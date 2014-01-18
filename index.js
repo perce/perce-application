@@ -3,21 +3,45 @@
  * Module dependencies.
  */
 
-var render = require('./lib/render');
-var logger = require('koa-logger');
-var route = require('koa-route');
-var views = require('co-views');
-var parse = require('co-body');
-var koa = require('koa');
-var app = koa();
+var debug      = require('debug')('INDEX');
+var koa        = require('koa');
+var logger     = require('koa-logger');
+var parse      = require('co-body');
+var render     = require('./lib/render');
+var route      = require('koa-route');
+var session    = require('koa-session');
+var redisStore = require('koa-redis');
+var views      = require('co-views');
 
+var app    = koa();
 // "database"
 
 var posts = [];
 
 // middleware
 
-app.use(logger());
+// logger
+// app.use(logger());
+
+// session
+app.name = 'koa-session-test';
+app.keys = ['perceeeeeeeee'];
+app.use( session( {
+  store : redisStore({
+    host : '127.0.0.1',
+    port : 6379,
+    db   : 0
+  })
+} ) );
+
+app.use(function *(next){
+  yield next;
+  this.session.set = 'jojojojo';
+
+  if ( this.session.isNew ) {
+    debug( 'jojojojojojo' );
+  }
+});
 
 // route middleware
 
