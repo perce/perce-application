@@ -2,15 +2,14 @@
  * Module dependencies.
  */
 
-var crypto     = require('crypto');
-var debug      = require('debug')('INDEX');
-var koa        = require('koa');
-var logger     = require('koa-logger');
-var parse      = require('co-body');
-var redis      = require('co-redis')(require('redis').createClient());
-var render     = require('./lib/render');
-var route      = require('koa-route');
-var views      = require('co-views');
+var debug    = require('debug')('INDEX');
+var koa      = require('koa');
+var logger   = require('koa-logger');
+var parse    = require('co-body');
+var render   = require('./lib/render');
+var route    = require('koa-route');
+var views    = require('co-views');
+var session = require('./lib/session/session');
 
 var app    = koa();
 // "database"
@@ -22,62 +21,11 @@ var posts = [];
 // logger
 // app.use(logger());
 
-
 app.name = 'koa-session-test';
 
-app.use(function *(next) {
-  var cookie = this.cookies.get('session'),
-      token;
-
-  if (this.request.url === '/safe_url' && cookie) {
-    cookie = JSON.parse(cookie);
-
-    if (cookie.u && cookie.t && cookie.h) {
-      token = yield redis.get(cookie.u + ';' + cookie.t);
-      hash = crypto
-        .createHmac('sha256', token)
-        .update([cookie.u, cookie.t, token].join(';'), 'hex')
-        .digest('hex');
-
-      if (hash !== cookie.h) {
-        // hash at user cookie is wrong, so send him not authorized and
-        // delete his cookie
-        console.log('wrong hash');
-      } else {
-        console.log('correct cookie');
-        yield next;
-      }
-    }
-  } else {
-    // not secured url
-    yield next;
-  }
-});
-
-app.use(function *(next) {
-  var username = 'foobar', // just a placeholder
-      currentTime,
-      token;
-
-  if (this.request.url === '/') {
-    currentTime = (new Date()).toISOString(),
-    token = crypto.randomBytes(1024).toString('hex');
-
-    // save in redis and then create the cookie
-    yield redis.set(username + ';' + currentTime, token, 'EX', '900');
-    this.cookies.set('session', JSON.stringify({
-      'u': username,
-      't': currentTime,
-      'h': crypto
-        .createHmac('sha256', token)
-        .update([username, currentTime, token].join(';'), 'hex')
-        .digest('hex')
-    }));
-  }
-
-  // go to next thing to do
-  yield next;
-});
+// session handling
+app.use(session.safeUrl);
+app.use(session.url);
 
 
 // route middleware
