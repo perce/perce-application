@@ -1,16 +1,15 @@
-
 /**
  * Module dependencies.
  */
 
+var crypto     = require('crypto');
 var debug      = require('debug')('INDEX');
 var koa        = require('koa');
 var logger     = require('koa-logger');
 var parse      = require('co-body');
+var redis      = require('co-redis')(require('redis').createClient());
 var render     = require('./lib/render');
 var route      = require('koa-route');
-var session    = require('koa-session');
-var redisStore = require('koa-redis');
 var views      = require('co-views');
 
 var app    = koa();
@@ -23,25 +22,63 @@ var posts = [];
 // logger
 // app.use(logger());
 
-// session
+
 app.name = 'koa-session-test';
-app.keys = ['perceeeeeeeee'];
-app.use( session( {
-  store : redisStore({
-    host : '127.0.0.1',
-    port : 6379,
-    db   : 0
-  })
-} ) );
 
-app.use(function *(next){
-  yield next;
-  this.session.set = 'jojojojo';
+app.use(function *(next) {
+  var cookie = this.cookies.get('session'),
+      token;
 
-  if ( this.session.isNew ) {
-    debug( 'jojojojojojo' );
+  if (this.request.url === '/safe_url' && cookie) {
+    cookie = JSON.parse(cookie);
+
+    if (cookie.u && cookie.t && cookie.h) {
+      token = yield redis.get(cookie.u + ';' + cookie.t);
+      hash = crypto
+        .createHmac('sha256', token)
+        .update([cookie.u, cookie.t, token].join(';'), 'hex')
+        .digest('hex');
+
+      if (hash !== cookie.h) {
+        // hash at user cookie is wrong, so send him not authorized and
+        // delete his cookie
+        console.log('wrong hash');
+      } else {
+        console.log('correct cookie');
+        yield next;
+      }
+    }
+  } else {
+    // not secured url
+    yield next;
   }
 });
+
+app.use(function *(next) {
+  var username = 'foobar', // just a placeholder
+      currentTime,
+      token;
+
+  if (this.request.url === '/') {
+    currentTime = (new Date()).toISOString(),
+    token = crypto.randomBytes(1024).toString('hex');
+
+    // save in redis and then create the cookie
+    yield redis.set(username + ';' + currentTime, token, 'EX', '900');
+    this.cookies.set('session', JSON.stringify({
+      'u': username,
+      't': currentTime,
+      'h': crypto
+        .createHmac('sha256', token)
+        .update([username, currentTime, token].join(';'), 'hex')
+        .digest('hex')
+    }));
+  }
+
+  // go to next thing to do
+  yield next;
+});
+
 
 // route middleware
 
@@ -49,6 +86,9 @@ app.use(route.get('/', list));
 app.use(route.get('/post/new', add));
 app.use(route.get('/post/:id', show));
 app.use(route.post('/post', create));
+app.use(route.get('/safe_url', function *() {
+  this.body = 'secured area';
+}));
 
 // route definitions
 
@@ -90,7 +130,8 @@ function *create() {
   this.redirect('/');
 }
 
-// listen
 
-app.listen(3000);
-console.log('listening on port 3000');
+// listen
+app.listen(3000, function() {
+  console.log('listening on port 3000');
+});
