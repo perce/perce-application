@@ -19,16 +19,20 @@
     "url": "https://github.com/perce/perce-application.git"
   },
   "dependencies": {
+    "koa": "~0.3.0",
     "koa-route": "~1.0.2",
     "koa-logger": "~1.1.1",
-    "co-views": "~0.1.0",
-    "koa": "~0.3.0",
-    "co-body": "0.0.1",
-    "swig": "~1.2.2",
     "koa-session": "~1.2.0",
     "koa-redis": "0.0.2",
+    "koa-render": "~0.2.1",
+    "redis": "~0.10.0",
+    "co-views": "~0.1.0",
+    "co-body": "0.0.1",
     "co-redis": "~1.1.0",
-    "redis": "~0.10.0"
+    "cushion": "~1.6.4",
+    "then-jade": "~1.1.0",
+    "bluebird": "~1.0.0",
+    "thunkify": "0.0.1"
   },
   "devDependencies": {
     "debug": "~0.7.4"

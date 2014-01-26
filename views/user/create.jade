@@ -27,4 +27,10 @@ html(lang="en")
         font-size: 6em;
       }
   body
-    h1 koa ♥
+    h1 koa on create ♥
+    p You're new here, right? Wanne create an account?
+    form(method="POST", action="/user")
+      input(type="email", name="email")
+      input(type="password", name="password")
+
+      button Create it yeah!!!
