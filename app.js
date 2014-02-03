@@ -16,8 +16,11 @@ var login     = require( './controller/login/controller' );
 var security  = require( './controller/security/controller' );
 var user      = require( './controller/user/controller' );
 
+var config = require( './config/config' );
+
 
 var app    = koa();
+app.outputErrors = true;
 
 // middleware
 
@@ -40,16 +43,13 @@ app.use( route.get( '/', index.index.get ) );
 // dashboard GET
 app.use( route.get( '/dashboard', dashboard.index.get ) );
 
-// login area GET | POST
-app.use( route.get( '/user/login', security.login.get ) );
-app.use( route.post( '/user/customer', security.login.post ) );
-app.use( route.get( '/security/login', security.login.get ) );
-app.use( route.post( '/security/login', security.login.post ) );
+// security login area GET | POST
+app.use( route.get( config.routes.security.login, security.login.get ) );
+app.use( route.post( config.routes.security.login, security.login.post ) );
 
 // customer creationg or display of customer area GET | POST
-app.use( route.get( '/user', user.index.get ) );
-app.use( route.post( '/user', user.index.post ) );
-
+app.use( route.get( config.routes.user.index, user.index.get ) );
+app.use( route.post( config.routes.user.create, user.index.post ) );
 
 // listen
 app.listen( 3000, function() {

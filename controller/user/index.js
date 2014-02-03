@@ -4,7 +4,7 @@
 var debug   = require( 'debug' )( 'USER/INDEX' );
 var session = require( '../../lib/session/session' );
 var user    = require( '../../lib/user/user' );
-var parse   = require('co-body');
+var parse   = require( 'co-body' );
 
 /**
  * Index Controller
@@ -35,7 +35,7 @@ Controller.prototype.post = function *post() {
   // more conditions please
   if ( typeof userDoc === 'object' ) {
     yield session.set( this, userDoc._id );
-    this.body = yield this.render( 'user/index' );
+    this.redirect( 'user' );
   } else {
     this.body = yield this.render( 'user/create' );
   }

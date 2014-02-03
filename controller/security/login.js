@@ -1,16 +1,18 @@
 
 
 
-var debug   = require('debug')('LOGIN/CONTROLLER');
-var session = require('../../lib/session/session');
-var parse   = require('co-body');
-var cushion = new (require('cushion').Connection)(
+var debug   = require( 'debug')('LOGIN/LOGIN' );
+var config  = require( '../../config/config' );
+var session = require( '../../lib/session/session' );
+var parse   = require( 'co-body');
+var cushion = new ( require('cushion').Connection )(
                 '127.0.0.1',
                 5984,
                 'stefan',
                 'xxxx'
               );
 var db      = cushion.database('perce-users');
+var user    = require( '../../lib/user/user' );
 
 /**
  * Index Controller
@@ -21,29 +23,36 @@ var Controller = function() {};
 /**
  * Get
  */
-Controller.prototype.get = function *index( next ) {
-  this.body = yield this.render('security/login');
+Controller.prototype.get = function *( next ) {
+  if ( session.isLoggedIn( this ) ) {
+    this.redirect( config.routes.dashboard.index );
+  } else {
+    this.body = yield this.render( 'security/login' );
+  }
 };
 
-Controller.prototype.post = function *index( next ) {
-  var post = yield parse(this);
-
-  db.allDocuments(function( error, info, allDocs ) {
-    debug( JSON.stringify( error ) );
-    debug( JSON.stringify( info ) );
-    debug( JSON.stringify( allDocs ) );
-  } );
+Controller.prototype.post = function *( next ) {
+  var post  = yield parse(this),
+      userDoc = false;
 
 
+  if ( post.email && post.password ) {
+    userDoc = yield user.authenticate( post.email, post.password );
 
-  // // ENCRYPT FOR SURE!!!! AND CHECKKK!!!!!!
-  // if ( post.name === 'stefan' && post.password === 'xxxx' ) {
-  //   yield session.set( this, post.name );
+    if ( userDoc ) {
+      yield session.set( this, userDoc._id );
 
-  //   this.redirect( '/dashboard' );
-  // } else {
-  //   this.redirect( '/login' );
-  // }
+      this.redirect( config.routes.dashboard.index );
+    } else {
+      this.status = 401;
+
+      yield this.render( 'security/login' );
+    }
+  } else {
+    this.status = 401;
+
+    yield this.render( 'security/login' );
+  }
 };
 
 module.exports = new Controller();
