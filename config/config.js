@@ -29,5 +29,15 @@ config.routes.security = {
   login : '/login'
 };
 
+//
+// Couch
+//
+config.couchdb = {
+  user     : 'perce',
+  password : 'perce'
+};
+
+
+
 
 module.exports = config;
