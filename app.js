@@ -17,6 +17,7 @@ var security  = require( './controller/security/controller' );
 var user      = require( './controller/user/controller' );
 
 var config = require( './config/config' );
+var routes = config.routes;
 
 
 var app    = koa();
@@ -41,15 +42,15 @@ app.use( views('./views', 'jade' ) );
 app.use( route.get( '/', index.index.get ) );
 
 // dashboard GET
-app.use( route.get( '/dashboard', dashboard.index.get ) );
+app.use( route.get( routes.dashboard.index, dashboard.index.get ) );
 
 // security login area GET | POST
-app.use( route.get( config.routes.security.login, security.login.get ) );
-app.use( route.post( config.routes.security.login, security.login.post ) );
+app.use( route.get( routes.security.login, security.login.get ) );
+app.use( route.post( routes.security.login, security.login.post ) );
 
 // customer creationg or display of customer area GET | POST
-app.use( route.get( config.routes.user.index, user.index.get ) );
-app.use( route.post( config.routes.user.create, user.index.post ) );
+app.use( route.get( routes.user.index, user.index.get ) );
+app.use( route.post( routes.user.create, user.index.post ) );
 
 // listen
 app.listen( 3000, function() {

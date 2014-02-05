@@ -21,7 +21,9 @@ var Controller = function() {};
 
 
 /**
- * Get
+ * TODO!!!
+ * [get description]
+ * @type {[type]}
  */
 Controller.prototype.get = function *( next ) {
   if ( session.isLoggedIn( this ) ) {
@@ -31,6 +33,12 @@ Controller.prototype.get = function *( next ) {
   }
 };
 
+
+/**
+ * TODO!!!
+ * [post description]
+ * @type {[type]}
+ */
 Controller.prototype.post = function *( next ) {
   var post  = yield parse(this),
       userDoc = false;
