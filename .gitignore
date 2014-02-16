@@ -8,8 +8,11 @@ lib-cov
 *.gz
 
 pids
+public
 logs
 results
+
+config/busters.json
 
 npm-debug.log
 node_modules
