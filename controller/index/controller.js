@@ -1,5 +1,5 @@
-var debug   = require('debug')('INDEX/CONTROLLER');
-var session = require('../../lib/session/session');
+var debug   = require( 'debug' )( 'INDEX/CONTROLLER' );
+var session = require( '../../lib/session/session' );
 var assets  = require( '../../lib/assets/assetsLoader.js' );
 
 /**
@@ -11,7 +11,7 @@ var Controller = function() {};
 /**
  * Get
  */
-Controller.prototype.get = function *index(next) {
+Controller.prototype.get = function *( next ) {
   this.body = yield this.render(
                       'index/index',
                       {
@@ -19,5 +19,6 @@ Controller.prototype.get = function *index(next) {
                       }
                     );
 };
+
 
 module.exports = new Controller();

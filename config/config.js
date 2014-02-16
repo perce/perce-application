@@ -7,27 +7,50 @@ var config = {};
  */
 config.routes = {};
 
-//
-// USER ROUTES
-//
-config.routes.user = {
-  index  : '/user',
-  create : '/user'
+/**
+ * Index routes
+ * @type {Object}
+ */
+config.routes.index = {
+  get : [ '/', '/howitworks', '/features', '/contact', '/user', '/login' ],
 };
 
-//
-// DASHBOARD ROUTES
-//
-config.routes.dashboard = {
-  index : '/dashboard'
+
+/**
+ * Angular templates
+ * @type {Object}
+ */
+config.routes.views = {
+  get : [ /views\/(.*).html/i ]
 };
 
-//
-// SECURITY ROUTES
-//
+
+/**
+ * Security routes
+ * @type {Object}
+ */
 config.routes.security = {
-  login : '/login'
+  post : '/login'
 };
+
+
+/**
+ * Customer routes
+ * @type {Object}
+ */
+config.routes.user = {
+  post  : '/user'
+};
+
+
+/**
+ * Dashboard routes
+ * @type {Object}
+ */
+config.routes.dashboard = {
+  get : '/dashboard'
+};
+
 
 //
 // Couch
