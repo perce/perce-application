@@ -6,7 +6,6 @@
 var gulp    = require( 'gulp' );
 var concat  = require( 'gulp-concat' );
 var stylus  = require( 'gulp-stylus' );
-var refresh = require( 'gulp-livereload' );
 var bust    = require( 'gulp-buster' );
 var svgmin  = require( 'gulp-svgmin' );
 var uglify  = require( 'gulp-uglify' );
@@ -51,23 +50,16 @@ gulp.task( 'svgo', function() {
         .pipe( gulp.dest( './public/img' ) );
 } );
 
-gulp.task( 'livereload', function() {
-  server.listen( 35729, function( err ){
-    if( err ) {
-      return console.log( err );
-    }
-  });
-} );
 
 // Default gulp task to run
 gulp.task( 'default', function() {
-    gulp.run( 'stylus', 'svgo', 'scripts', 'livereload' );
+    gulp.start( 'stylus', 'svgo', 'scripts' );
 
     gulp.watch( './assets/styles/**/*.styl', function() {
-      gulp.run( 'stylus', 'livereload', 'bust' );
+      gulp.start( 'stylus', 'bust' );
     } );
 
     gulp.watch( './assets/js/**/*.js', function() {
-      gulp.run( 'scripts', 'livereload', 'bust' );
+      gulp.start( 'scripts', 'bust' );
     } );
 } );

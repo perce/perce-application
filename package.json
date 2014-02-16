@@ -41,7 +41,6 @@
   },
   "devDependencies": {
     "debug": "~0.7.4",
-    "gulp-livereload": "~1.1.1",
     "tiny-lr": "0.0.5",
     "gulp-buster": "~0.2.1",
     "gulp-svgmin": "~0.4.1"
