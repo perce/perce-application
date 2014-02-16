@@ -38,8 +38,9 @@ views( app, './views', 'html' )
 app.use( session.handle );
 
 // asset handling
-app.use( statics( '.' ) );
+//app.use( statics( '.' ) );
 
+app.use(statics(__dirname + '/public'));
 
 // route middleware
 
@@ -47,6 +48,8 @@ app.use( statics( '.' ) );
 app.use( route.get( '/', index.get ) );
 app.use( route.get( '/howitworks', index.get ) );
 app.use( route.get( '/features', index.get ) );
+app.use( route.get( '/howitworks', index.get ) );
+
 
 // dashboard GET
 app.use( route.get( routes.dashboard.index, dashboard.index.get ) );

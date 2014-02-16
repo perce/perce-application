@@ -1,34 +1,38 @@
 ( function() {
   var indexApp = angular.module( 'indexApp', [
-    'ngRoute'
+    'ngRoute',
+    'myAppControllers'
   ]);
 
-  indexApp.config( [ '$routeProvider',
-    function( $routeProvider ) {
+  indexApp.config( [ '$routeProvider','$locationProvider',
+    function( $routeProvider, $locationProvider ) {
       $routeProvider
-        .when( '/', {
-          templateUrl : 'public/views/index.html',
-          controller  : 'whatever'
+        .when( '/home', {
+          templateUrl : 'views/home.html',
+          controller  : 'MyAppController'
         } )
         .when( '/howitworks', {
-          templateUrl : 'public/views/howItWorks.html',
-          controller  : 'whatever'
+          templateUrl : 'views/howitworks.html',
+          controller  : 'MyAppController'
         } )
-        // .when( '/features', {
-        //   templateUrl : 'partials/phone-detail.html',
-        //   controller  : 'PhoneDetailCtrl'
-        // } )
-        // .when( '/whoWeAre', {
-        //   templateUrl : 'partials/phone-detail.html',
-        //   controller  : 'PhoneDetailCtrl'
-        // } )
-        // .when( '/contact', {
-        //   templateUrl : 'partials/phone-detail.html',
-        //   controller  : 'PhoneDetailCtrl'
-        // } )
-        // .otherwise( {
-        //   redirectTo: '/'
-        // } );
+        .when( '/features', {
+          templateUrl : 'views/features.html',
+          controller  : 'MyAppController'
+        } )
+        .when( '/whoWeAre', {
+          templateUrl : 'views/whoWeAre.html',
+          controller  : 'MyAppController'
+        } )
+        .when( '/contact', {
+          templateUrl : 'views/contact.html',
+          controller  : 'MyAppController'
+        } )
+        .otherwise( {
+          redirectTo: '/'
+        } );
+
+        $locationProvider.html5Mode(true);
+
     } ] );
 
   indexApp.controller( 'whatever', function $scope () {

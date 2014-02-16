@@ -26,12 +26,13 @@ gulp.task( 'bust', function() {
 gulp.task( 'scripts', function() {
   gulp.src(
     [
-      './assets/js/vendor/angular.min.js',
+      './assets/js/vendor/angular.js',
       './assets/js/vendor/angular-route.js',
+      './assets/js/index/controller.js',
       './assets/js/index/app.js'
     ]
   ).pipe( concat( 'index.js') )
-    .pipe( uglify() )
+    //.pipe( uglify() )
     .pipe( gulp.dest('./public/js') )
 } );
 
