@@ -1,31 +1,31 @@
 ( function() {
   var indexApp = angular.module( 'indexApp', [
-    'ngRoute',
-    'myAppControllers'
+    'ngRoute'
   ]);
 
   indexApp.config( [ '$routeProvider','$locationProvider',
     function( $routeProvider, $locationProvider ) {
       $routeProvider
-        .when( '/home', {
-          templateUrl : 'views/home.html',
-          controller  : 'MyAppController'
+        .when( '/', {
+          templateUrl : 'views/index/home.html',
         } )
         .when( '/howitworks', {
-          templateUrl : 'views/howitworks.html',
-          controller  : 'MyAppController'
+          templateUrl : 'views/index/howitworks.html',
         } )
         .when( '/features', {
-          templateUrl : 'views/features.html',
-          controller  : 'MyAppController'
+          templateUrl : 'views/index/features.html',
         } )
-        .when( '/whoWeAre', {
-          templateUrl : 'views/whoWeAre.html',
-          controller  : 'MyAppController'
+        .when( '/whoweare', {
+          templateUrl : 'views/index/whoweare.html',
         } )
         .when( '/contact', {
-          templateUrl : 'views/contact.html',
-          controller  : 'MyAppController'
+          templateUrl : 'views/index/contact.html',
+        } )
+        .when( '/user', {
+          templateUrl : 'views/index/user.html'
+        } )
+        .when( '/login', {
+          templateUrl : 'views/index/login.html'
         } )
         .otherwise( {
           redirectTo: '/'
@@ -35,7 +35,4 @@
 
     } ] );
 
-  indexApp.controller( 'whatever', function $scope () {
-    $scope.message = 'yeah';
-  } );
 } )( angular );
