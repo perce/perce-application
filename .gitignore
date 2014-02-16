@@ -11,6 +11,7 @@ pids
 
 logs
 results
+public
 
 config/busters.json
 
