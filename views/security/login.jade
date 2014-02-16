@@ -1,33 +1,13 @@
+include ../layout/index/head
+include ../layout/index/header
+
 doctype html
 html(lang="en")
   head
-    title koa-render
-    script.
-      var foo = true;
-
-      if (foo) {
-         bar()
-      }
-
-      function bar() {
-        console.log('everything works.');
-      }
-
-    style.
-      body {
-        font-family: Helvetica;
-        text-align: center;
-      }
-
-
-      h1 {
-        padding-top: 300px;
-        font-weight: 200;
-        color: #333;
-        font-size: 6em;
-      }
+    +head( assets )
   body
-    h1 koa on login ♥
+    +header()
+
     form(method="POST", action="/login")
       input(type="email", name="email")
       input(type="password", name="password")

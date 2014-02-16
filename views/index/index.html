@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+  <html lang="en" ng-app="indexApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Perce.io - Frontend performance metrics the easy way</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:800" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Gentium+Basic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<%= assets( 'public/styles/index.css' ) %>">
+    <script src="<%= assets( 'public/js/index.js' ) %>">
+    </script>
+  </head>
+  <body>
+    <header class="container header">
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <a href="/howitworks">How it works</a>
+            <li>
+              <a href="/features">Features</a>
+            <li>
+              <a href="/whoWeAre">Who we are</a>
+            <li>
+              <a href="/contact">Contact</a>
+            <li>
+              <a href="/user" class="button__red">Sign up</a>
+            <li>
+              <a href="/login" class="button__red">Log in</a>
+          </ul>
+        </nav>
+        <a href="/" class="header--logo">Perce.io</a>
+      </div>
+    </header>
+    <div class="container" ng-view></div>
+    <footer class="container">
+      <p>
+        <a href="/humans.txt">manufactered</a> with ❤ by <a href="/">perce.io</a> in berlin
+      </p>
+      <nav>
+        <a href="mailto:hello@perce.io" target="_blank">Mail</a> / Follow us on <a href="http://twitter.com/perceio">Twitter</a>, <a href="http://www.facebook.com/perceio">Facebook</a>, <a href="http://plus.google.com/perceio">Google+</a>
+      </nav>
+      <p>© 2014 perce.io / All rights reserved /<a href="">Privacy Policy</a></p>
+    </footer>
+    </script>
+    <!-- script src="scripts/vendor/mailchimp.js" -->
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <!--script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+e.src='//www.google-analytics.com/analytics.js';
+r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+ga('create','UA-XXXXX-X');ga('send','pageview');</script-->
+  </body>
+</html>

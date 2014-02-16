@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <filter id="shadow" x="0" y="0" width="102%" height="102%">
+      <feOffset result="offOut" in="SourceAlpha" dx="0.2" dy="0.2" />
+      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="0.2" />
+      <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+    </filter>
+  </defs>
+  <polygon points="0,20 20,0 20,100 0,100" fill="#2980b8" stroke="" filter="url(#shadow)" />
+  <polygon points="20,0 80,0 100,20 20,20" fill="#3297da" stroke="" filter="url(#shadow)" />
+  <rect x="20" y="60" width="60" height="20" fill="#3297da" stroke="" filter="url(#shadow)" />
+  <polygon points="80,20 100,20 100,60 80,80" fill="#2980b8" stroke="" filter="url(#shadow)" />
+</svg>

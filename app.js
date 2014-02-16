@@ -1,12 +1,14 @@
 /**
  * Module dependencies.
  */
+'use strict';
 
 var debug    = require( 'debug' )( 'INDEX' );
 var koa      = require( 'koa' );
 var logger   = require( 'koa-logger' );
 var route    = require( 'koa-route' );
-var views    = require( 'koa-render' );
+var views    = require( 'koa-views' );
+var statics  = require( 'koa-static' );
 var session  = require( './lib/session/session' );
 
 // controller
@@ -28,18 +30,23 @@ app.outputErrors = true;
 // logger
 app.use( logger() );
 
-app.name = 'koa-session-test';
+// view handling
+views( app, './views', 'html' )
+  .map( 'underscore', 'html' );
 
 // session handling
 app.use( session.handle );
 
-// view handling
-app.use( views('./views', 'jade' ) );
+// asset handling
+app.use( statics( '.' ) );
+
 
 // route middleware
 
 // Homepage GET
-app.use( route.get( '/', index.index.get ) );
+app.use( route.get( '/', index.get ) );
+app.use( route.get( '/howitworks', index.get ) );
+app.use( route.get( '/features', index.get ) );
 
 // dashboard GET
 app.use( route.get( routes.dashboard.index, dashboard.index.get ) );
