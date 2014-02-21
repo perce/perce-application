@@ -3,8 +3,20 @@
     'ngRoute'
   ]);
 
-  indexApp.config( [ '$routeProvider','$locationProvider',
-    function( $routeProvider, $locationProvider ) {
+
+  indexApp.factory('httpRequestInterceptor', function () {
+    return {
+      request: function (config) {
+        config.headers['perce-ajax'] = 'true';
+        console.log( 'header ', config.headers );
+        return config;
+      }
+    };
+  });
+
+  indexApp.config( [ '$routeProvider','$locationProvider', '$httpProvider',
+    function AppConfig( $routeProvider, $locationProvider, $httpProvider ) {
+
       $routeProvider
         .when( '/', {
           templateUrl : 'views/index/home.html',
@@ -13,7 +25,7 @@
           templateUrl : 'views/index/howitworks.html',
         } )
         .when( '/features', {
-          templateUrl : 'views/index/features.html',
+          templateUrl : 'dashboard/index.html',
         } )
         .when( '/whoweare', {
           templateUrl : 'views/index/whoweare.html',
@@ -35,6 +47,8 @@
 
         $locationProvider.html5Mode(true);
 
+        $httpProvider.interceptors.push('httpRequestInterceptor');
+
     } ] );
 
   indexApp.controller( 'LoginController', function( $scope, $http ) {
@@ -43,9 +57,19 @@
     $scope.submit = function() {
       console.log( 'LoginController() ', $scope );
 
-      $http.post('phones/phones.json').success(function(data) {
-        $scope.phones = data;
-      });
+      $http.post( '/login', $scope.data )
+          .success( function( data ){
+            console.log( 'login success! ', data );
+            if ( data.url ){
+              document.location = data.url;
+            }
+          } )
+          .error( function( data ){
+            console.warn( 'oh nooooooo :( login error! ', data );
+            if( data.error ) {
+              $scope.errorMessage = data.error;
+            }
+          } );
     };
   } );
 
@@ -59,18 +83,16 @@
 
       $http.post( '/user', $scope.data )
           .success( function( data ){
-            console.log( 'login success! ', data );
-
+            console.log( 'create user success! ', data );
             if ( data.url ){
               document.location = data.url;
             }
           } )
           .error( function( data ){
-            console.warn( 'oh nooooooo :( login error! ', data );
+            console.warn( 'oh nooooooo :( create user error! ', data );
             if( data.error ) {
               $scope.errorMessage = data.error;
             }
-
           } );
     };
   } );
