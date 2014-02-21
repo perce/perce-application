@@ -48,7 +48,7 @@ config.routes.user = {
  * @type {Object}
  */
 config.routes.dashboard = {
-  get : '/dashboard'
+  get : [ '/dashboard' ]
 };
 
 
