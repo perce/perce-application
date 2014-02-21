@@ -3,8 +3,20 @@
     'ngRoute'
   ]);
 
-  indexApp.config( [ '$routeProvider','$locationProvider',
-    function( $routeProvider, $locationProvider ) {
+
+  indexApp.factory('httpRequestInterceptor', function () {
+    return {
+      request: function (config) {
+        config.headers['perce-ajax'] = 'true';
+        console.log( 'header ', config.headers );
+        return config;
+      }
+    };
+  });
+
+  indexApp.config( [ '$routeProvider','$locationProvider', '$httpProvider',
+    function AppConfig( $routeProvider, $locationProvider, $httpProvider ) {
+
       $routeProvider
         .when( '/', {
           templateUrl : 'views/index/home.html',
@@ -13,7 +25,7 @@
           templateUrl : 'views/index/howitworks.html',
         } )
         .when( '/features', {
-          templateUrl : 'views/index/features.html',
+          templateUrl : 'dashboard/index.html',
         } )
         .when( '/whoweare', {
           templateUrl : 'views/index/whoweare.html',
@@ -34,6 +46,8 @@
         } );
 
         $locationProvider.html5Mode(true);
+
+        $httpProvider.interceptors.push('httpRequestInterceptor');
 
     } ] );
 
