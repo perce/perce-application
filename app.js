@@ -17,7 +17,7 @@ controller.index      = require( './controller/index/controller' );
 controller.views      = require( './controller/views/controller' );
 controller.dashboard  = require( './controller/dashboard/controller' );
 // controller.login      = require( './controller/login/controller' );
-// controller.security   = require( './controller/security/controller' );
+controller.security   = require( './controller/security/controller' );
 controller.user       = require( './controller/user/controller' );
 
 var config = require( './config/config' );
