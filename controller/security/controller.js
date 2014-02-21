@@ -21,9 +21,7 @@ var Controller = function() {};
 
 
 /**
- * TODO!!!
- * [post description]
- * @type {[type]}
+ * Handle login ajax call and authenticate user
  */
 Controller.prototype.post = function *( next ) {
   var post  = yield parse(this),
@@ -36,16 +34,21 @@ Controller.prototype.post = function *( next ) {
     if ( userDoc ) {
       yield session.set( this, userDoc._id );
 
-      this.redirect( config.routes.dashboard.index );
+      this.status = 200;
+      this.body = {
+        url : '/dashboard'
+      };
     } else {
       this.status = 401;
-
-      yield this.render( 'security/login' );
+      this.body = {
+        error : 'Nice try buddy!!!'
+      };
     }
   } else {
     this.status = 401;
-
-    yield this.render( 'security/login' );
+    this.body = {
+      error : 'Please enter email and password'
+    };
   }
 };
 

@@ -16,8 +16,7 @@ var controller        = {};
 controller.index      = require( './controller/index/controller' );
 controller.views      = require( './controller/views/controller' );
 controller.dashboard  = require( './controller/dashboard/controller' );
-// controller.login      = require( './controller/login/controller' );
-// controller.security   = require( './controller/security/controller' );
+controller.security   = require( './controller/security/controller' );
 controller.user       = require( './controller/user/controller' );
 
 var config = require( './config/config' );
@@ -54,17 +53,6 @@ for ( var route in routes ) {
     }
   }
 }
-
-// // dashboard GET
-// app.use( route.get( routes.dashboard.index, dashboard.index.get ) );
-
-// // security login area GET | POST
-// app.use( route.get( routes.security.login, security.login.get ) );
-// app.use( route.post( routes.security.login, security.login.post ) );
-
-// // customer creationg or display of customer area GET | POST
-// app.use( route.get( routes.user.index, user.index.get ) );
-// app.use( route.post( routes.user.create, user.index.post ) );
 
 // listen
 app.listen( 3000, function() {
