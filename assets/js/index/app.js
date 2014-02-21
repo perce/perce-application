@@ -1,10 +1,12 @@
-( function() {
-  var indexApp = angular.module( 'indexApp', [
+var perce = perce || {};
+
+( function( ng, perce ) {
+
+  perce.indexApp = ng.module( 'indexApp', [
     'ngRoute'
-  ]);
+  ])
 
-
-  indexApp.factory('httpRequestInterceptor', function () {
+  .factory('httpRequestInterceptor', function () {
     return {
       request: function (config) {
         config.headers['perce-ajax'] = 'true';
@@ -12,9 +14,9 @@
         return config;
       }
     };
-  });
+  })
 
-  indexApp.config( [ '$routeProvider','$locationProvider', '$httpProvider',
+  .config( [ '$routeProvider','$locationProvider', '$httpProvider',
     function AppConfig( $routeProvider, $locationProvider, $httpProvider ) {
 
       $routeProvider
@@ -25,7 +27,7 @@
           templateUrl : 'views/index/howitworks.html',
         } )
         .when( '/features', {
-          templateUrl : 'dashboard/index.html',
+          templateUrl : 'views/index/features.html',
         } )
         .when( '/whoweare', {
           templateUrl : 'views/index/whoweare.html',
@@ -51,49 +53,4 @@
 
     } ] );
 
-  indexApp.controller( 'LoginController', function( $scope, $http ) {
-    console.log( 'LoginController() ' );
-
-    $scope.submit = function() {
-      console.log( 'LoginController() ', $scope );
-
-      $http.post( '/login', $scope.data )
-          .success( function( data ){
-            console.log( 'login success! ', data );
-            if ( data.url ){
-              document.location = data.url;
-            }
-          } )
-          .error( function( data ){
-            console.warn( 'oh nooooooo :( login error! ', data );
-            if( data.error ) {
-              $scope.errorMessage = data.error;
-            }
-          } );
-    };
-  } );
-
-
-
-  indexApp.controller( 'CreateUserController', function( $scope, $http ) {
-    console.log( 'CreateUserController() ' );
-
-    $scope.submit = function( event ) {
-      console.log( 'CreateUserController() ', $scope );
-
-      $http.post( '/user', $scope.data )
-          .success( function( data ){
-            console.log( 'create user success! ', data );
-            if ( data.url ){
-              document.location = data.url;
-            }
-          } )
-          .error( function( data ){
-            console.warn( 'oh nooooooo :( create user error! ', data );
-            if( data.error ) {
-              $scope.errorMessage = data.error;
-            }
-          } );
-    };
-  } );
-} )( angular );
+} )( angular, perce );
