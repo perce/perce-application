@@ -1,8 +1,8 @@
 <h1>User create</h1>
 
 <p>You're new here, right? Wanne create an account?</p>
-<form method="POST" action="/user">
-  <input type="email" name="email">
-  <input type="password" name="password">
+<form method="POST" data-ng-submit="submit()">
+  <input type="email" name="email" data-ng-model="data.email">
+  <input type="password" name="password" data-ng-model="data.password">
   <button>Create it yeah</button>
 </form>
