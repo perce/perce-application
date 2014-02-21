@@ -67,6 +67,10 @@
           } )
           .error( function( data ){
             console.warn( 'oh nooooooo :( login error! ', data );
+            if( data.error ) {
+              $scope.errorMessage = data.error;
+            }
+
           } );
     };
   } );
