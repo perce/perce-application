@@ -3,5 +3,6 @@
 <form method="POST" data-url="/login" data-ng-submit="submit()">
   <input type="email" name="email" data-ng-model="data.email">
   <input type="password" name="password" data-ng-model="data.password">
+  <div style="color: red;" ng-bind="errorMessage"></div>
   <button>Send it yeah</button>
 </form>
