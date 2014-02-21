@@ -43,9 +43,19 @@
     $scope.submit = function() {
       console.log( 'LoginController() ', $scope );
 
-      $http.post('phones/phones.json').success(function(data) {
-        $scope.phones = data;
-      });
+      $http.post( '/login', $scope.data )
+          .success( function( data ){
+            console.log( 'login success! ', data );
+            if ( data.url ){
+              document.location = data.url;
+            }
+          } )
+          .error( function( data ){
+            console.warn( 'oh nooooooo :( login error! ', data );
+            if( data.error ) {
+              $scope.errorMessage = data.error;
+            }
+          } );
     };
   } );
 
@@ -59,18 +69,16 @@
 
       $http.post( '/user', $scope.data )
           .success( function( data ){
-            console.log( 'login success! ', data );
-
+            console.log( 'create user success! ', data );
             if ( data.url ){
               document.location = data.url;
             }
           } )
           .error( function( data ){
-            console.warn( 'oh nooooooo :( login error! ', data );
+            console.warn( 'oh nooooooo :( create user error! ', data );
             if( data.error ) {
               $scope.errorMessage = data.error;
             }
-
           } );
     };
   } );
