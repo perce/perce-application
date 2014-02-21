@@ -36,6 +36,18 @@ gulp.task( 'indexScripts', function() {
     .pipe( gulp.dest('./public/js') )
 } );
 
+gulp.task( 'dashboardScripts', function() {
+  gulp.src(
+    [
+      './assets/js/vendor/angular.js',
+      './assets/js/vendor/angular-route.js',
+      './assets/js/dashboard/app.js'
+    ]
+  ).pipe( concat( 'dashboard.js') )
+    //.pipe( uglify() )
+    .pipe( gulp.dest('./public/js') )
+} );
+
 gulp.task( 'stylus', function() {
     gulp.src( './assets/styles/index.styl' )
       .pipe( stylus( {
@@ -54,13 +66,13 @@ gulp.task( 'svgo', function() {
 
 // Default gulp task to run
 gulp.task( 'default', function() {
-    gulp.start( 'stylus', 'svgo', 'indexScripts' );
+    gulp.start( 'stylus', 'svgo', 'indexScripts', 'dashboardScripts' );
 
     gulp.watch( './assets/styles/**/*.styl', function() {
       gulp.start( 'stylus', 'bust' );
     } );
 
     gulp.watch( './assets/js/**/*.js', function() {
-      gulp.start( 'indexScripts', 'bust' );
+      gulp.start( 'indexScripts', 'dashboardScripts', 'bust' );
     } );
 } );
