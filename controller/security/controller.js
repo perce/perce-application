@@ -24,6 +24,28 @@ var Controller = function() {};
 
 
 /**
+ * Handle log out
+ */
+Controller.prototype.get = function *( next ) {
+  var date = new Date();
+
+  // set date to past
+  // to make cookie expire
+  date.setMinutes( date.getMinutes() - 1 )
+
+  this.cookies.set(
+    'session',
+    'whatever',
+    {
+      expires : date
+    }
+  );
+
+  this.redirect( '/' );
+};
+
+
+/**
  * Handle login ajax call and authenticate user
  */
 Controller.prototype.post = function *( next ) {
