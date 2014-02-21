@@ -40,9 +40,15 @@ Controller.prototype.post = function *( next ) {
       };
     } else {
       this.status = 401;
+      this.body = {
+        error : 'Nice try buddy!!!'
+      };
     }
   } else {
     this.status = 401;
+    this.body = {
+      error : 'Please enter email and password'
+    };
   }
 };
 
