@@ -30,7 +30,7 @@ config.routes.views = {
  * @type {Object}
  */
 config.routes.security = {
-  post : '/login'
+  // post : [ '/login' ]
 };
 
 
@@ -39,7 +39,7 @@ config.routes.security = {
  * @type {Object}
  */
 config.routes.user = {
-  post  : '/user'
+  post  : [ '/user' ]
 };
 
 

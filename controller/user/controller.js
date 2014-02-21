@@ -20,12 +20,19 @@ Controller.prototype.post = function *post() {
 
   var userDoc = yield user.create( post );
 
-  // more conditions please
   if ( typeof userDoc === 'object' ) {
     yield session.set( this, userDoc._id );
-    this.redirect( 'user' );
+
+    this.status = 201;
+    this.body = {
+      url : '/dashboard'
+    };
   } else {
-    this.body = yield this.render( 'user/create' );
+    // show error message
+    this.status = 403;
+    this.body = {
+      'error' : userDoc
+    };
   }
 };
 
