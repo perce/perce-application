@@ -30,6 +30,7 @@ config.routes.views = {
  * @type {Object}
  */
 config.routes.security = {
+  get  : [ '/logout' ],
   post : [ '/login' ]
 };
 
