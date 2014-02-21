@@ -7,7 +7,10 @@ var user    = require( '../../lib/user/user' );
 var parse   = require( 'co-body' );
 
 /**
- * Index Controller
+ * Constructor
+ * User controller
+ *
+ * @type { AJAX CONTROLLER }
  */
 var Controller = function() {};
 

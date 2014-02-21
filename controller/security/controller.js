@@ -15,7 +15,10 @@ var db      = cushion.database('perce-users');
 var user    = require( '../../lib/user/user' );
 
 /**
- * Index Controller
+ * Constructor
+ * Security Controller
+ *
+ * @type { AJAX CONTROLLER }
  */
 var Controller = function() {};
 
@@ -26,7 +29,6 @@ var Controller = function() {};
 Controller.prototype.post = function *( next ) {
   var post  = yield parse(this),
       userDoc = false;
-
 
   if ( post.email && post.password ) {
     userDoc = yield user.authenticate( post.email, post.password );
