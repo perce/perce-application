@@ -1,7 +1,7 @@
 <h1>Login</h1>
 
-<form method="POST", action="/login">
-  <input type="email" name="email">
-  <input type="password" name="password">
+<form method="POST" data-url="/login" data-ng-submit="submit()">
+  <input type="email" name="email" data-ng-model="data.email">
+  <input type="password" name="password" data-ng-model="data.password">
   <button>Send it yeah</button>
 </form>

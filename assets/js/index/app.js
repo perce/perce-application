@@ -25,7 +25,8 @@
           templateUrl : 'views/index/user.html'
         } )
         .when( '/login', {
-          templateUrl : 'views/index/login.html'
+          templateUrl : 'views/index/login.html',
+          controller  : 'LoginController'
         } )
         .otherwise( {
           redirectTo: '/'
@@ -35,4 +36,9 @@
 
     } ] );
 
+  indexApp.controller( 'LoginController', function( $scope, $http ) {
+    $scope.submit = function() {
+      console.log( $scope );
+    };
+  } );
 } )( angular );

@@ -27,7 +27,7 @@ gulp.task( 'scripts', function() {
     [
       './assets/js/vendor/angular.js',
       './assets/js/vendor/angular-route.js',
-      './assets/js/index/controller.js',
+      './assets/js/index/controller/loginController.js',
       './assets/js/index/app.js'
     ]
   ).pipe( concat( 'index.js') )
