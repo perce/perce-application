@@ -22,13 +22,14 @@ gulp.task( 'bust', function() {
     .pipe( gulp.dest( './config' ) );
 } );
 
-gulp.task( 'scripts', function() {
+gulp.task( 'indexScripts', function() {
   gulp.src(
     [
       './assets/js/vendor/angular.js',
       './assets/js/vendor/angular-route.js',
-      './assets/js/index/controller/loginController.js',
-      './assets/js/index/app.js'
+      './assets/js/index/app.js',
+      './assets/js/index/controller/login.js',
+      './assets/js/index/controller/createUser.js'
     ]
   ).pipe( concat( 'index.js') )
     //.pipe( uglify() )
@@ -53,13 +54,13 @@ gulp.task( 'svgo', function() {
 
 // Default gulp task to run
 gulp.task( 'default', function() {
-    gulp.start( 'stylus', 'svgo', 'scripts' );
+    gulp.start( 'stylus', 'svgo', 'indexScripts' );
 
     gulp.watch( './assets/styles/**/*.styl', function() {
       gulp.start( 'stylus', 'bust' );
     } );
 
     gulp.watch( './assets/js/**/*.js', function() {
-      gulp.start( 'scripts', 'bust' );
+      gulp.start( 'indexScripts', 'bust' );
     } );
 } );
