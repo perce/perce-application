@@ -8,12 +8,15 @@ var assets  = require( '../../lib/assets/assetsLoader.js' );
 var Controller = function() {};
 
 
+Controller.prototype.isSecure = true;
+
+
 /**
  * Get
  */
-Controller.prototype.get = function *index(next) {
+Controller.prototype.get = function *index( next ) {
   this.body = yield this.render(
-                    'dashboard/index',
+                    'private/index',
                     {
                       assets : assets
                     }
