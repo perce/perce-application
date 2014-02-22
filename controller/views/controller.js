@@ -9,9 +9,9 @@ var Controller = function() {};
 /**
  * Get
  */
-Controller.prototype.get = function *( view ) {
+Controller.prototype.get = function *() {
   this.body = yield this.render(
-                      view
+                      this.params[ 0 ]
                     );
 };
 

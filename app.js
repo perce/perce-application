@@ -6,7 +6,7 @@
 var debug    = require( 'debug' )( 'INDEX' );
 var koa      = require( 'koa' );
 var logger   = require( 'koa-logger' );
-var router   = require( 'koa-route' );
+var router   = require( 'koa-router' );
 var views    = require( 'koa-views' );
 var statics  = require( 'koa-static' );
 var session  = require( './lib/session/session' );
@@ -24,6 +24,7 @@ var routes = config.routes;
 
 
 var app    = koa();
+app.use( router( app ) );
 app.outputErrors = true;
 
 // middleware
@@ -35,21 +36,24 @@ app.use( logger() );
 views( app, './views', 'html' )
   .map( 'underscore', 'html' );
 
-// session handling
-app.use( session.handle );
-
 // asset handling
-app.use(statics(__dirname + '/public'));
+app.use( statics( __dirname + '/public' ) );
 
 // route middleware
 for ( var route in routes ) {
-  if ( typeof routes[ route ] === 'object' ) {
-    for ( var method in routes[ route ] ) {
-      if ( routes[ route ][ method ] instanceof Array ) {
-        routes[ route ][ method ].forEach( function( value ) {
-          app.use( router[ method ]( value, controller[ route ][ method ] ) );
-        }.bind( this ) );
-      }
+  for ( var method in routes[ route ] ) {
+    if ( routes[ route ][ method ] instanceof Array ) {
+      routes[ route ][ method ].forEach( function( value ) {
+        if ( controller[ route ].isSecure ) {
+          app[ method ](
+            value, session.handleSecure, controller[ route ][ method ]
+          );
+        } else {
+          app[ method ](
+            value, session.handle, controller[ route ][ method ]
+          );
+        }
+      }.bind( this ) );
     }
   }
 }
