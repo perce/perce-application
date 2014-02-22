@@ -21,26 +21,26 @@ var perce = perce || {};
 
       $routeProvider
         .when( '/', {
-          templateUrl : 'views/index/home.html',
+          templateUrl : 'views/index/partials/home.html',
         } )
         .when( '/howitworks', {
-          templateUrl : 'views/index/howitworks.html',
+          templateUrl : 'views/index/partials/howitworks.html',
         } )
         .when( '/features', {
-          templateUrl : 'views/index/features.html',
+          templateUrl : 'views/index/partials/features.html',
         } )
         .when( '/whoweare', {
-          templateUrl : 'views/index/whoweare.html',
+          templateUrl : 'views/index/partials/whoweare.html',
         } )
         .when( '/contact', {
-          templateUrl : 'views/index/contact.html',
+          templateUrl : 'views/index/partials/contact.html',
         } )
         .when( '/user', {
-          templateUrl : 'views/index/user.html',
+          templateUrl : 'views/index/partials/user.html',
           controller  : 'CreateUserController'
         } )
         .when( '/login', {
-          templateUrl : 'views/index/login.html',
+          templateUrl : 'views/index/partials/login.html',
           controller  : 'LoginController'
         } )
         .otherwise( {
