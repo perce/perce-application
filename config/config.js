@@ -63,6 +63,16 @@ config.routes.projects = {
   post : [ '/projects' ]
 };
 
+
+/**
+ * Projects routes
+ * @type {Object}
+ */
+config.routes.projectUsers = {
+  post : [ '/projects/:projectId/users' ]
+};
+
+
 /**
  * Customer routes
  * @type {Object}
@@ -72,9 +82,10 @@ config.routes.user = {
 };
 
 
-//
-// Couch
-//
+/**
+ * Couch configuration
+ * @type {Object}
+ */
 config.couchdb = {
   user     : 'perce',
   password : 'perce'

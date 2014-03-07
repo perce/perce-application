@@ -12,14 +12,16 @@ var statics  = require( 'koa-static' );
 var session  = require( './lib/session/session' );
 
 // controller
-var controller        = {};
-controller.account    = require( './controller/account/controller' )
-controller.index      = require( './controller/index/controller' );
-controller.dashboard  = require( './controller/dashboard/controller' );
-controller.projects   = require( './controller/projects/controller' );
-controller.security   = require( './controller/security/controller' );
-controller.user       = require( './controller/user/controller' );
-controller.views      = require( './controller/views/controller' );
+var controller = {};
+
+controller.account      = require( './controller/account/controller' )
+controller.index        = require( './controller/index/controller' );
+controller.dashboard    = require( './controller/dashboard/controller' );
+controller.projects     = require( './controller/projects/controller' );
+controller.projectUsers = require( './controller/projectUsers/controller' );
+controller.security     = require( './controller/security/controller' );
+controller.user         = require( './controller/user/controller' );
+controller.views        = require( './controller/views/controller' );
 
 var config = require( './config/config' );
 var routes = config.routes;

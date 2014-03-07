@@ -48,7 +48,7 @@ Controller.prototype._getHTML = function *() {
  */
 Controller.prototype.post = function *( next ) {
   var post = yield parse( this );
-
+  debug( 'we are here' );
   var projectDoc = yield project.create( post, this.userId );
 
   if ( typeof projectDoc === 'object' ) {
