@@ -21,13 +21,14 @@ var perce = perce || {};
 
       $routeProvider
         .when( '/dashboard', {
-          templateUrl : 'views/dashboard/partials/home.html',
+          templateUrl : 'views/private/partials/home.html',
         } )
         .when( '/account', {
-          templateUrl : 'views/dashboard/partials/account.html',
+          templateUrl : 'views/private/partials/account.html',
+          controller  : 'AccountController'
         } )
         .when( '/projects', {
-          templateUrl : 'views/dashboard/partials/projects.html',
+          templateUrl : 'views/private/partials/projects.html',
         } )
         .otherwise( {
           redirectTo: '/'

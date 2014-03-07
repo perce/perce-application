@@ -13,7 +13,7 @@ var Controller = function() {};
  */
 Controller.prototype.get = function *index(next) {
   this.body = yield this.render(
-                    'dashboard/index',
+                    'private/index',
                     {
                       assets : assets
                     }

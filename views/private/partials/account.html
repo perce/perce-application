@@ -1,1 +1,26 @@
-###account
+<style>
+  input {
+    line-height: normal;
+    display: block;
+    margin: 10px 0;
+    border: 0;
+    border-bottom: 1px solid #fff;
+    background-color: transparent;
+    color: #ffffff;
+    padding: 6px;
+  }
+</style>
+
+<form action="#">
+  <input type="text" placeholder="id" ng-model="account.id" ng-blur='save()'>
+  <input type="text" placeholder="email" ng-model="account.email" ng-blur='save()'>
+  <input type="text" placeholder="first_name" ng-model="account.first_name" ng-blur='save()'>
+  <input type="text" placeholder="last_name" ng-model="account.last_name" ng-blur='save()'>
+</form>
+
+<div>
+  <h2>DEBUG</h2>
+  <pre>
+  {{ account | json }}
+  </pre>
+</div>
