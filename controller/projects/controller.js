@@ -18,13 +18,10 @@ Controller.prototype.isSecure = true;
  */
 Controller.prototype.get = function *( next ) {
   if ( this.header[ 'perce-ajax' ] === 'true' ) {
+    var projects = yield project.getProjectsForUser( this.userId );
+
     this.status = 200;
-    this.body =  [
-      { url: 'http://www.natue.com.br', title: 'natue' },
-      { url: 'http://www.epicerie.com.br', title: 'epicerie' },
-      { url: 'http://www.erie.com.br', title: 'dafiti' },
-      { url: 'http://www.yay.com.br', title: 'yay' }
-    ];
+    this.body   = projects;
   } else {
     yield Controller.prototype._getHTML.apply( this, arguments );
   }
