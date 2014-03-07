@@ -2,7 +2,7 @@ var perce = perce || {};
 
 ( function( ng, perce ) {
 
-  perce.indexApp = ng.module( 'indexApp', [
+  perce.indexApp = ng.module( 'beautyApp', [
     'ngRoute'
   ])
 
