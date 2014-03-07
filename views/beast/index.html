@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-  <html lang="en" ng-app="dashboardApp">
+  <html lang="en" ng-app="indexApp">
   <head>
     <meta charset="utf-8">
     <title>Perce.io - Frontend performance metrics the easy way</title>
@@ -8,7 +8,7 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:800|Gentium+Basic" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="<%= assets( '/styles/index.css' ) %>">
-    <script src="<%= assets( '/js/dashboard.js' ) %>">
+    <script src="<%= assets( '/js/index.js' ) %>">
     </script>
   </head>
   <body>
@@ -17,15 +17,24 @@
         <nav>
           <ul>
             <li>
-              <a href="/dashboard">Home</a>
+              <a href="/howitworks">How it works</a>
             <li>
-              <a href="/account">Account</a>
+              <a href="/features">Features</a>
             <li>
-              <a href="/projects">Projects</a>
+              <a href="/whoweare">Who we are</a>
             <li>
-              <a href="/user" class="button__red">Sign up</a>
-            <li>
-              <a href="/login" class="button__red">Log in</a>
+              <a href="/contact">Contact</a>
+            <% if ( isLoggedIn ) { %>
+              <li>
+                <a href="/dashboard" class="button__red" target="_self">Metrics at awesome dashboard</a>
+              <li>
+                <a href="/logout" class="button__red" target="_self">Log out</a>
+            <% } else { %>
+              <li>
+                <a href="/user" class="button__red">Sign up</a>
+              <li>
+                <a href="/login" class="button__red">Log in</a>
+            <% } %>
           </ul>
         </nav>
         <a href="/" class="header--logo">Perce.io</a>

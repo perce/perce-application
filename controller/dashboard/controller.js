@@ -18,7 +18,8 @@ Controller.prototype.get = function *index( next ) {
   this.body = yield this.render(
                     'beast/index',
                     {
-                      assets : assets
+                      assets     : assets,
+                      isLoggedIn : session.isLoggedIn( this )
                     }
                   );
 };
