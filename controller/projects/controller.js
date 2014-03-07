@@ -53,6 +53,13 @@ Controller.prototype.post = function *( next ) {
 
   if ( typeof projectDoc === 'object' ) {
     this.status = 201;
+    this.body = {
+      doc : {
+        _id  : projectDoc._id,
+        name : projectDoc._body.name,
+        url  : projectDoc._body.url
+      }
+    }
   } else {
     // show error message
     this.status = 403;
