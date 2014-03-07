@@ -41,8 +41,7 @@ gulp.task( 'privateScripts', function() {
     [
       './assets/js/vendor/angular.js',
       './assets/js/vendor/angular-route.js',
-      './assets/js/dashboard/app.js',
-      './assets/js/dashboard/controller/account.js'
+      './assets/js/dashboard/app.js'
     ]
   ).pipe( concat( 'beast.js') )
     //.pipe( uglify() )
