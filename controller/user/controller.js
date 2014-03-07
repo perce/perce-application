@@ -33,7 +33,7 @@ Controller.prototype.post = function *post() {
   } else {
     // show error message
     this.status = 403;
-    this.body = {
+    this.body   = {
       'error' : userDoc
     };
   }

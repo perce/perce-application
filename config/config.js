@@ -7,6 +7,16 @@ var config = {};
  */
 config.routes = {};
 
+
+/**
+ * account routes
+ * @type {Object}
+ */
+config.routes.account = {
+  get : [ '/account' ],
+};
+
+
 /**
  * Index routes
  * @type {Object}
@@ -36,20 +46,29 @@ config.routes.security = {
 
 
 /**
+ * Dashboard routes
+ * @type {Object}
+ */
+config.routes.dashboard = {
+  get : [ '/dashboard' ]
+};
+
+
+/**
+ * Projects routes
+ * @type {Object}
+ */
+config.routes.projects = {
+  get  : [ '/projects' ],
+  post : [ '/projects' ]
+};
+
+/**
  * Customer routes
  * @type {Object}
  */
 config.routes.user = {
   post  : [ '/user' ]
-};
-
-
-/**
- * Dashboard routes
- * @type {Object}
- */
-config.routes.dashboard = {
-  get : [ '/dashboard', '/account', '/projects' ]
 };
 
 
