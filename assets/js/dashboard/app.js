@@ -25,7 +25,6 @@ var perce = perce || {};
         } )
         .when( '/account', {
           templateUrl : 'views/private/partials/account.html',
-          controller  : 'AccountController'
         } )
         .when( '/projects', {
           templateUrl : 'views/private/partials/projects.html',
