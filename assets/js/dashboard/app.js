@@ -78,6 +78,8 @@ var perce = perce || {};
           .success( function( data ){
             console.log( 'auto save! yay! ', data );
 
+            $scope.newProjects = {};
+
           } )
           .error( function( data ){
             console.warn( 'oh nooooooo :( auto save error! ', data );
