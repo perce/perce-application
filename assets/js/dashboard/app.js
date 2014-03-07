@@ -64,7 +64,7 @@ var perce = perce || {};
   } )
 
   .controller( 'ProjectController', function( $scope, $http ) {
-    console.log( 'ProjectController() hello hello' );
+    console.log( 'ProjectController() hello hello', $scope );
 
        $http( { method:'GET', url: 'projects' } ).
           success(function(data, status) {
@@ -75,6 +75,24 @@ var perce = perce || {};
             $scope.data = data || "Request failed";
             $scope.status = status;
         });
+
+      $scope.addUser = function( id, email ){
+        console.log( 'addUser()', id, email );
+
+        // email = 'hans@meisenkaiser.com';
+
+        $http( { method:'POST', url: '/projects/' + id + '/users', data: { 'email': email } } ).
+          success(function(data, status) {
+            console.log( 'user added' );
+            // $scope.projects = data;
+            // $scope.status = status;
+          }).
+          error(function(data, status) {
+            console.warn( 'no user added ;(' );
+            // $scope.data = data || "Request failed";
+            // $scope.status = status;
+        });
+      };
 
       $scope.create = function() {
          $http.post( '/projects', $scope.newProject )

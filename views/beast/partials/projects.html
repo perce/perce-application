@@ -1,8 +1,19 @@
 ###projects
 
+
+POST /projects/id/user
+
 projects list
 <ul>
-  <li ng-repeat="project in projects"> {{ project.name }} </li>
+  <li ng-repeat="project in projects"> {{ project.name }}
+
+
+    <form ng-submit="addUser( project._id, email )" action="">
+      <input type="email" ng-model="email">
+      <button>add user</button>
+    </form>
+
+  </li>
 </ul>
 
 <p> {{ status }} </p>
