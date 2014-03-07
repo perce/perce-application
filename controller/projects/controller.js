@@ -17,14 +17,13 @@ Controller.prototype.isSecure = true;
  * Get
  */
 Controller.prototype.get = function *( next ) {
-  if (
-    this.request.type && this.request.type === 'Application/JSON'
-  ) {
+  if ( this.header[ 'perce-ajax' ] === 'true' ) {
     this.status = 200;
     this.body =  [
       { url: 'http://www.natue.com.br', title: 'natue' },
       { url: 'http://www.epicerie.com.br', title: 'epicerie' },
-      { url: 'http://www.erie.com.br', title: 'dafiti' }
+      { url: 'http://www.erie.com.br', title: 'dafiti' },
+      { url: 'http://www.yay.com.br', title: 'yay' }
     ];
   } else {
     yield Controller.prototype._getHTML.apply( this, arguments );

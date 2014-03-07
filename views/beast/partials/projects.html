@@ -5,6 +5,8 @@ projects list
   <li ng-repeat="project in projects"> {{ project.title }} </li>
 </ul>
 
+<p> {{ status }} </p>
+
 <form name="createForm" ng-submit="create()" method="POST">
   <input type="text" ng-model="newProject.name" name="name">
   <input type="url" ng-model="newProject.url" name="url">
