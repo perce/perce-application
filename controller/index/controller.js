@@ -13,7 +13,7 @@ var Controller = function() {};
  */
 Controller.prototype.get = function *( next ) {
   this.body = yield this.render(
-                      'index/index',
+                      'beauty/index',
                       {
                         assets     : assets,
                         isLoggedIn : session.isLoggedIn( this )

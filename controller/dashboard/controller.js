@@ -16,7 +16,7 @@ Controller.prototype.isSecure = true;
  */
 Controller.prototype.get = function *index( next ) {
   this.body = yield this.render(
-                    'private/index',
+                    'beast/index',
                     {
                       assets : assets
                     }
