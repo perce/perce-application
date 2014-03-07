@@ -20,7 +20,12 @@ Controller.prototype.get = function *( next ) {
   if (
     this.request.type && this.request.type === 'Application/JSON'
   ) {
-
+    this.status = 200;
+    this.body =  [
+      { url: 'http://www.natue.com.br', title: 'natue' },
+      { url: 'http://www.epicerie.com.br', title: 'epicerie' },
+      { url: 'http://www.erie.com.br', title: 'dafiti' }
+    ];
   } else {
     yield Controller.prototype._getHTML.apply( this, arguments );
   }
