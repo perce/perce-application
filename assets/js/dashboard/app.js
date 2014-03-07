@@ -79,9 +79,12 @@ var perce = perce || {};
       $scope.create = function() {
          $http.post( '/projects', $scope.newProject )
           .success( function( data ){
-            console.log( 'auto save! yay! ', data );
+            console.log( 'project created! yay! ' );
 
-            $scope.newProjects = {};
+            $scope.projects.push( angular.copy( $scope.newProject ) );
+
+            $scope.newProject.name = '';
+            $scope.newProject.url = '';
 
           } )
           .error( function( data ){
