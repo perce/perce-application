@@ -1,7 +1,7 @@
 var perce = perce || {};
 
 ( function( ng, perce ) {
-  perce.dashboardApp = angular.module( 'dashboardApp', [
+  perce.dashboardApp = angular.module( 'beastApp', [
     'ngRoute'
   ]);
 

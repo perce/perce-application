@@ -31,7 +31,7 @@ gulp.task( 'indexScripts', function() {
       './assets/js/index/controller/login.js',
       './assets/js/index/controller/createUser.js'
     ]
-  ).pipe( concat( 'index.js') )
+  ).pipe( concat( 'beauty.js') )
     //.pipe( uglify() )
     .pipe( gulp.dest('./public/js') )
 } );
@@ -44,7 +44,7 @@ gulp.task( 'privateScripts', function() {
       './assets/js/dashboard/app.js',
       './assets/js/dashboard/controller/account.js'
     ]
-  ).pipe( concat( 'dashboard.js') )
+  ).pipe( concat( 'beast.js') )
     //.pipe( uglify() )
     .pipe( gulp.dest('./public/js') )
 } );
