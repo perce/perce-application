@@ -66,15 +66,18 @@ var perce = perce || {};
   .controller( 'ProjectController', function( $scope, $http ) {
     console.log( 'ProjectController() hello hello' );
 
-      $scope.projects = [
-          { url: 'http://www.natue.com.br', title: 'natue' },
-          { url: 'http://www.epicerie.com.br', title: 'epicerie' },
-          { url: 'http://www.epicerie.com.br', title: 'dafiti' }
-          ];
-
+       $http( { method:'GET', url: 'projects' } ).
+          success(function(data, status) {
+            $scope.projects = data;
+            $scope.status = status;
+          }).
+          error(function(data, status) {
+            $scope.data = data || "Request failed";
+            $scope.status = status;
+        });
 
       $scope.create = function() {
-         $http.post( '/project', $scope.newProject )
+         $http.post( '/projects', $scope.newProject )
           .success( function( data ){
             console.log( 'auto save! yay! ', data );
 
