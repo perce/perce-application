@@ -1,23 +1,26 @@
+var perce = perce || {};
+
 ( function( perce ) {
 
-  perce.dashboardApp.controller( 'AccountController', function( $scope, $http ) {
-    console.log( 'AccountController() ' );
+  perce.beastApp.controller( 'accountController', function( $scope, $http ) {
+    console.log( 'accountController() hellolhello' );
 
-      $scope.save = function() {
-         $http.put( '/account', $scope.account )
+    $scope.submit = function() {
+      console.log( 'AccountController() ', $scope );
+
+      $http.post( '/login', $scope.data )
           .success( function( data ){
-            console.log( 'auto save! yay! ', data );
+            console.log( 'login success! ', data );
             if ( data.url ){
               document.location = data.url;
             }
           } )
           .error( function( data ){
-            console.warn( 'oh nooooooo :( auto save error! ', data );
+            console.warn( 'oh nooooooo :( login error! ', data );
             if( data.error ) {
               $scope.errorMessage = data.error;
             }
           } );
-
     };
   } );
 
