@@ -84,13 +84,9 @@ var perce = perce || {};
         $http( { method:'POST', url: '/projects/' + id + '/users', data: { 'email': email } } ).
           success(function(data, status) {
             console.log( 'user added' );
-            // $scope.projects = data;
-            // $scope.status = status;
           }).
           error(function(data, status) {
             console.warn( 'no user added ;(' );
-            // $scope.data = data || "Request failed";
-            // $scope.status = status;
         });
       };
 
@@ -99,7 +95,7 @@ var perce = perce || {};
           .success( function( data ){
             console.log( 'project created! yay! ' );
 
-            $scope.projects.push( angular.copy( $scope.newProject ) );
+            $scope.projects.push( data.doc );
 
             $scope.newProject.name = '';
             $scope.newProject.url = '';
