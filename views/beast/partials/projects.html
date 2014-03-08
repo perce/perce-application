@@ -1,25 +1,20 @@
-###projects
+<h1>projects</h1>
 
-
-POST /projects/id/user
-
-projects list
+<h2>your projects</h2>
 <ul>
   <li ng-repeat="project in projects"> {{ project.name }}
 
-
     <form ng-submit="addUser( project._id, email )" action="">
-      <input type="email" ng-model="email" required>
+      <input type="email" placeholder="user email" ng-model="email" required>
       <button>add user</button>
     </form>
 
   </li>
 </ul>
 
-<p> {{ status }} </p>
-
+<h2>add a new projects</h2>
 <form name="createForm" ng-submit="create()" method="POST">
-  <input type="text" ng-model="newProject.name" name="name" required>
-  <input type="url" ng-model="newProject.url" name="url" required>
+  <input type="text" ng-model="newProject.name" placeholder="project name" name="name" required>
+  <input type="url" ng-model="newProject.url" placeholder="project url" name="url" required>
   <button ng-disabled="createForm.$invalid">submit</button>
 </form>
