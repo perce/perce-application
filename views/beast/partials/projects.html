@@ -1,12 +1,17 @@
 <h1>projects</h1>
 
 <h2>your projects</h2>
-<ul>
-  <li ng-repeat="project in projects"> {{ project.name }}
+<ul class="projects">
+  <li class="project" ng-repeat="project in projects">
 
-    <form ng-submit="addUser( project._id, email )" action="">
-      <input type="email" placeholder="user email" ng-model="email" required>
-      <button>add user</button>
+     <span class="project__name">{{ project.name }} </span>
+
+    <input style="display: none;" type="checkbox" ng-model="isFormVisible" id="{{ project._id}}">
+    <label class="project__showUserForm" for="{{ project._id}}">[ add user ]</label>
+
+    <form ng-show="isFormVisible" ng-submit="addUser( project._id, email )" action="">
+      <input type="email" class="project__email" placeholder="user email" ng-model="email" required>
+      <button>+</button>
     </form>
 
   </li>
