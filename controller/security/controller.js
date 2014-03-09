@@ -60,7 +60,7 @@ Controller.prototype.post = function *( next ) {
 
       this.status = 200;
       this.body = {
-        url : '/dashboard'
+        url : '/projects'
       };
     } else {
       this.status = 401;
