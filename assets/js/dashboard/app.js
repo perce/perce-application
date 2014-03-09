@@ -1,16 +1,16 @@
-var perce = perce || {};
-
 ( function( ng, perce ) {
+  var perce = perce || {};
+
   perce.dashboardApp = angular.module( 'beastApp', [
-    'ngRoute'
+    'ngRoute',
+    'ngAnimate'
   ]);
 
 
   perce.dashboardApp.factory('httpRequestInterceptor', function () {
     return {
-      request: function (config) {
-        config.headers['perce-ajax'] = 'true';
-        console.log( 'header ', config.headers );
+      request: function ( config ) {
+        config.headers[ 'perce-ajax' ] = 'true';
         return config;
       }
     };
@@ -35,7 +35,7 @@ var perce = perce || {};
           redirectTo: '/'
         } );
 
-        $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode( true );
 
         $httpProvider.interceptors.push('httpRequestInterceptor');
 
@@ -66,28 +66,27 @@ var perce = perce || {};
   .controller( 'ProjectController', function( $scope, $http ) {
     console.log( 'ProjectController() hello hello', $scope );
 
-       $http( { method:'GET', url: 'projects' } ).
-          success(function(data, status) {
+      $http( { method:'GET', url: 'projects' } ).
+          success( function( data, status ) {
             $scope.projects = data;
             $scope.status = status;
-          }).
-          error(function(data, status) {
+            console.log( 'data loaded' );
+          } ).
+          error( function( data, status ) {
             $scope.data = data || "Request failed";
             $scope.status = status;
-        });
+          } );
 
       $scope.addUser = function( id, email ){
         console.log( 'addUser()', id, email );
 
-        // email = 'hans@meisenkaiser.com';
-
         $http( { method:'POST', url: '/projects/' + id + '/users', data: { 'email': email } } ).
-          success(function(data, status) {
+          success( function( data, status ) {
             console.log( 'user added' );
-          }).
-          error(function(data, status) {
+          } ).
+          error( function( data, status ) {
             console.warn( 'no user added ;(' );
-        });
+        } );
       };
 
       $scope.create = function() {
@@ -108,4 +107,4 @@ var perce = perce || {};
 
   } );
 
-} )( angular, perce );
+} )( angular, window.perce );
