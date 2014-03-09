@@ -1,25 +1,26 @@
-<h1>projects</h1>
-
-<h2>your projects</h2>
+<h1>Your projects</h1>
 <ul class="projects">
   <li class="project" ng-repeat="project in projects">
+    <a href="/projects/{{ project._id }}/dashboard" class="project__name">{{ project.name }}</a>
 
-     <span class="project__name">{{ project.name }} </span>
+    <a href="/projects/{{ project._id }}/dashboard" class="project__link">go to</a>
+    <input type="checkbox" id="project_{{ project._id}}">
+    <label class="project__label--showUserForm" for="project_{{ project._id}}">add user</label>
+    <label class="project__label--hideUserForm" for="project_{{ project._id}}">cancel</label>
 
-    <input style="display: none;" type="checkbox" ng-model="isFormVisible" id="{{ project._id}}">
-    <label class="project__showUserForm" for="{{ project._id}}">[ add user ]</label>
-
-    <form ng-show="isFormVisible" ng-submit="addUser( project._id, email )" action="">
+    <form class="project__form--addUser" ng-submit="addUser( project._id, email )" action="">
+      <p>Want to add a new user? Just enter the email and he will be invited.</p>
       <input type="email" class="project__email" placeholder="user email" ng-model="email" required>
       <button>+</button>
     </form>
-
-  </li>
+    <li class="project--new">
+      <input id="newProjectForm" type="checkbox" id="{{ project._id}}">
+      <label class="project__label--showNewProjectForm" for="newProjectForm">add project</label>
+      <form class="project__form--addNewProject" id="newProjectForm" ng-submit="create()" method="POST">
+        <p>You want to add a new project? That's great! Keep going.</p>
+        <input type="text" ng-model="newProject.name" placeholder="project name" name="name" required>
+        <input type="url" ng-model="newProject.url" placeholder="project url" name="url" required>
+        <button ng-disabled="createForm.$invalid">submit</button>
+        </form>
 </ul>
 
-<h2>add a new projects</h2>
-<form name="createForm" ng-submit="create()" method="POST">
-  <input type="text" ng-model="newProject.name" placeholder="project name" name="name" required>
-  <input type="url" ng-model="newProject.url" placeholder="project url" name="url" required>
-  <button ng-disabled="createForm.$invalid">submit</button>
-</form>

@@ -1,16 +1,233 @@
 .projects
   list-style none
   padding 0
+  position relative
+
+  min-height 300px
+
+  margin 0 0 0 -.5rem
+  padding 0 12rem 0 0
+
+  input[type=checkbox]
+    display none
+
+    &:checked
+      ~ form
+        max-height 300px
+
+      ~ .project__label--showUserForm
+        display none
+
+      ~ .project__label--hideUserForm
+        display block
+
+      ~ .project__label--showNewProjectForm
+        &:before
+          transform rotate( 135deg )
+          background color-red
+
+      ~ .project__form--addNewProject
+        padding-top 4rem
+        height 100%
+
+  form
+    background color-white
+    color color-dark-blue
+
+    padding 0 0.5rem
+    max-height 0
+    overflow hidden
+
+    -webkit-transition 0.5s linear all
+    -moz-transition 0.5s linear all
+    -o-transition 0.5s linear all
+    transition 0.5s linear all
+
+
+.project
+  display inline-block
+
+  position relative
+
+  width calc( 25% - 1rem )
+  height 15rem
+
+  margin 0 0.5rem 1rem
+
+  text-align center
+
+  border 1px solid color-white
+
+.project--new
+  position absolute
+
+  width 12.5rem
+  height 15rem
+
+  padding 0 0 0 1rem
+
+  top 0
+  right 0
+
+  p
+    margin 0
+    text-align justify
 
 
 .project__name
   display inline-block
-  width  250px
   font-weight bold
   color #e74c3c
 
 .project__email
   border none
   padding 4px
-  margin 2px 2px 20px 0
-  width 242px
+
+.project__form--addNewProject
+  position absolute
+  display block
+
+  top 0
+  right 0
+
+  width calc( 100% - 1rem )
+  max-height 0
+
+  margin 0
+
+  padding 0.5rem
+
+  input, button
+    width 100%
+
+  input
+    margin 0.25rem 0
+    &:first-child
+      margin-top 1.5rem
+
+  button
+    position absolute
+
+    left 0
+    bottom 0
+
+    height 2rem
+
+    color color-white
+    background color-blue
+
+    border none
+
+
+.project__form--addUser
+  position absolute
+  top 0
+  left 0
+  bottom 2rem
+  width 100%
+
+  p
+    text-align justify
+
+  input, button
+    width 100%
+
+.project__label
+  cursor pointer
+
+.project__label--showNewProjectForm
+  @extend .project__label
+
+  width  3rem
+  height 0
+
+  display block
+  float right
+  position relative
+
+  padding 3rem 0 0 0
+  margin 0.5rem 0.5rem 0 0
+
+  overflow hidden
+  z-index z-labelShowNewProject
+
+  &:hover
+    &:before
+      background color-blue
+
+  &:before
+    position absolute
+
+    width 100%
+    height 100%
+
+    top 0
+    left 0
+
+    content '+'
+
+    line-height 2.66rem
+
+    text-align center
+    font-size 3rem
+
+    background color-dark-grey
+
+    border 2px solid color-white
+    border-radius 50%
+
+    -webkit-transition 0.25s linear all
+    -moz-transition 0.25s linear all
+    -o-transition 0.25s linear all
+    transition 0.25s linear all
+
+.project__label--showUserForm, .project__label--hideUserForm
+  @extend .project__label
+
+  position absolute
+
+  bottom 0
+  left 0
+
+  display block
+
+  width 100%
+  height 2rem
+
+  line-height 2rem
+
+  background color-blue
+
+  -webkit-transition 0.25s linear background
+  -moz-transition 0.25s linear background
+  -o-transition 0.25s linear background
+  transition 0.25s linear background
+
+  &:hover
+    background lighten( color-blue, 10 )
+
+.project__label--hideUserForm
+  display none
+
+.project__link
+  position absolute
+
+  bottom 2rem
+  left 0
+
+  width 100%
+  height 2rem
+
+  line-height 2rem
+
+  color color-white
+  text-decoration none
+  background color-orange
+
+  -webkit-transition 0.25s linear background
+  -moz-transition 0.25s linear background
+  -o-transition 0.25s linear background
+  transition 0.25s linear background
+
+  &:hover
+    background lighten( color-orange, 10 )

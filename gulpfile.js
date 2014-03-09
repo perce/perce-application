@@ -41,11 +41,12 @@ gulp.task( 'privateScripts', function() {
     [
       './assets/js/vendor/angular.js',
       './assets/js/vendor/angular-route.js',
+      './assets/js/vendor/angular-animate.js',
       './assets/js/dashboard/app.js'
     ]
-  ).pipe( concat( 'beast.js') )
+  ).pipe( concat( 'beast.js' ) )
     //.pipe( uglify() )
-    .pipe( gulp.dest('./public/js') )
+    .pipe( gulp.dest( './public/js' ) )
 } );
 
 gulp.task( 'stylus', function() {

@@ -1,5 +1,8 @@
 @import "../vendor/normalize"
 
+*, *:before, *:after
+  box-sizing border-box
+
 body
   background-color color-dark-grey
   color color-white
@@ -13,8 +16,27 @@ body
   width 90%
   max-width 1000px
   margin 0 auto
+  overflow hidden
 
 
 footer a,
 footer a:visited
   color: #fff
+
+h1
+  font-size 1.5rem
+  border-bottom 1px solid color-white
+
+  padding .5rem 0;
+
+.ng-enter, .ng-leave
+  &.container
+    max-height 0
+
+
+.container
+  -webkit-transition 0.5s linear max-height !important
+  -moz-transition 0.5s linear max-height !important
+  -o-transition 0.5s linear max-height !important
+  transition 0.5s linear max-height !important
+  max-height 1200px
