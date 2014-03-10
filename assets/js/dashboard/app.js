@@ -27,9 +27,13 @@
           templateUrl : 'views/beast/partials/account.html',
           controller  : 'AccountController'
         } )
+        .when( '/projects/:id/dashboard', {
+          templateUrl : 'views/beast/partials/project.html',
+          controller  : 'ProjectController'
+        } )
         .when( '/projects', {
           templateUrl : 'views/beast/partials/projects.html',
-          controller  : 'ProjectController'
+          controller  : 'ProjectsController'
         } )
         .otherwise( {
           redirectTo: '/'
@@ -63,8 +67,8 @@
     };
   } )
 
-  .controller( 'ProjectController', function( $scope, $http ) {
-    console.log( 'ProjectController() hello hello', $scope );
+  .controller( 'ProjectsController', function( $scope, $http ) {
+    console.log( 'ProjectsController() hello hello', $scope );
 
       $http( { method:'GET', url: 'projects' } ).
           success( function( data, status ) {
@@ -104,6 +108,13 @@
             console.warn( 'oh nooooooo :( auto save error! ', data );
           } );
       };
+
+  } )
+
+  .controller( 'ProjectController', function( $scope, $http, $routeParams ) {
+    console.log( 'ProjectController() hello yay!!', $routeParams.id );
+
+    $scope.projectId = $routeParams.id;
 
   } );
 
