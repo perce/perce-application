@@ -20,9 +20,9 @@
               <a href="/contact">Contact</a>
             <% if ( isLoggedIn ) { %>
               <li>
-                <a href="/account">Account</a>
+                <a ui-sref="account">Account</a>
               <li>
-                <a href="/projects">Projects</a>
+                <a ui-sref="projects">Projects</a>
               <li>
                 <a href="/logout" class="button__red" target="_self">Log out</a>
             <% } else { %>
@@ -36,7 +36,7 @@
         <a href="/" class="header--logo">Perce.io</a>
       </div>
     </header>
-    <div class="container" ng-view></div>
+    <div class="container" ui-view></div>
 
     <footer class="mainFooter">
       <div class="col-3-1">

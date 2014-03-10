@@ -4,7 +4,8 @@
   "devDependencies": {
     "angular": "~v1.2.14",
     "angular-route": "~1.2.14",
-    "angular-animate": "~v1.2.14"
+    "angular-animate": "~v1.2.14",
+    "angular-ui-router": "~0.2.9"
   },
   "dependencies": {}
 }
