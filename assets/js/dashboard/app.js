@@ -37,7 +37,7 @@
           templateUrl: 'views/beast/partials/projects.html',
           controller: 'ProjectsController'
         })
-        .state('projects.detail', {
+        .state('project', {
           url: '/project/:id',
           templateUrl: 'views/beast/partials/project.html',
           controller: 'ProjectController'
@@ -122,10 +122,10 @@
   } )
 
   .controller( 'ProjectController', function( $scope, $http, $stateParams, $location ) {
-    console.log( 'ProjectController() hello yay!!', $routeParams.id );
+    console.log( 'ProjectController() hello yay!!', $stateParams );
 
     $scope.id = $stateParams.id;
-    $scope.action = $stateParams.action;
+
 
     $scope.isActiveLink = function( path ) {
     var pathElements = $location.path().split( '/' );
