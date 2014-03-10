@@ -1,0 +1,9 @@
+<h1>User invitation</h1>
+
+<p>You were invited!!! Perfect just set your password.</p>
+<form method="POST" data-ng-submit="submit()">
+  <input type="password" name="password" data-ng-model="data.password">
+  <button>Finish invitation</button>
+
+  <div style="color: red;" ng-bind="errorMessage"></div>
+</form>
