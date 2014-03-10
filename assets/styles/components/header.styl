@@ -1,6 +1,7 @@
 .header
-  height 5rem;
-  font-size 1rem;
+  position relative
+  height 5rem
+  font-size 1rem
 
   a
     color color-white
@@ -9,25 +10,34 @@
   nav
     float right
 
-    margin 2rem 0 0 0
+    margin 1rem 0 0 0
 
   ul
     margin 0
 
   li
     display inline-block
-    margin 0 0 0 1rem
+    margin 0 2rem
+
+    &:last-child
+      margin-right 0
 
 
 .header--logo
-  display  inline-block
-  margin 1rem 0
+  position absolute
 
-  height 0
-  width 2.5rem
+  top 0
+  left 0
 
-  padding-top 2.5rem
+  height 100%
+  width 10rem
 
+  padding 2.5rem 0 0 4.5rem
+
+  background-color darken( color-super-dark-grey, 5 )
   background-image url(../img/logo.svg)
+  background-size 2.5rem 2.5rem
+  background-repeat no-repeat
+  background-position 1rem 1rem
 
   overflow hidden
