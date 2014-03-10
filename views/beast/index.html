@@ -20,7 +20,7 @@
               <a href="/contact">Contact</a>
             <% if ( isLoggedIn ) { %>
               <li>
-                <a href="/account">Account</a>
+                <a href="/account" ng-class="isActiveLink('dom')">Account</a>
               <li>
                 <a href="/projects">Projects</a>
               <li>
@@ -34,6 +34,7 @@
           </ul>
         </nav>
         <a href="/" class="header--logo">Perce.io</a>
+        <div class="header--email"><%= userEmail %></div>
       </div>
     </header>
     <div class="container" ng-view></div>

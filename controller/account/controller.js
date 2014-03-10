@@ -19,7 +19,8 @@ Controller.prototype.get = function *index( next ) {
                     'beast/index',
                     {
                       assets     : assets,
-                      isLoggedIn : session.isLoggedIn( this )
+                      isLoggedIn : session.isLoggedIn( this ),
+                      userEmail  : this.user.email
                     }
                   );
 };

@@ -119,12 +119,12 @@
 
     $scope.isActiveLink = function( path ) {
     var pathElements = $location.path().split( '/' );
-    if ( pathElements[pathElements.length-1] === path ) {
+    if ( pathElements[ pathElements.length - 1 ] === path ) {
       return 'active';
     } else {
       return '';
     }
-}
+  }
 
   } );
 

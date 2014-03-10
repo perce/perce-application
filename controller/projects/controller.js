@@ -37,7 +37,9 @@ Controller.prototype._getHTML = function *() {
                       'beast/index',
                       {
                         assets     : assets,
-                        isLoggedIn : session.isLoggedIn( this )
+                        isLoggedIn : session.isLoggedIn( this ),
+                        userEmail  : this.user.email
+
                       }
                     );
 
