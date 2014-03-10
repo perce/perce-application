@@ -1,0 +1,10 @@
+{
+  "name": "ngSprntr",
+  "version": "0.0.1",
+  "devDependencies": {
+    "angular": "~v1.2.14",
+    "angular-route": "~1.2.14",
+    "angular-animate": "~v1.2.14"
+  },
+  "dependencies": {}
+}
