@@ -41,13 +41,26 @@
           url: '/project/:id',
           templateUrl: 'views/beast/partials/project.html',
           controller: 'ProjectController'
+        })
+        .state('project.general', {
+          url: '/general',
+          views: {
+            'main': {
+              templateUrl: 'views/beast/partials/project_general.html',
+              controller: 'ProjectController'
+            }
+          }
+        })
+        .state('project.requests', {
+          url: '/requests',
+          views: {
+            'main': {
+              templateUrl: 'views/beast/partials/project_requests.html',
+              controller: 'ProjectController'
+            }
+          }
         });
 
-
-        // .when( '/projects/:id/:action', {
-        //   templateUrl : 'views/beast/partials/project.html',
-        //   controller  : 'ProjectController'
-        // } )
 
         $locationProvider.html5Mode( true );
 
