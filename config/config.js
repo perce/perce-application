@@ -59,7 +59,7 @@ config.routes.dashboard = {
  * @type {Object}
  */
 config.routes.projects = {
-  get  : [ '/projects', '/projects/:id/general' ],
+  get  : [ '/projects', '/projects/:id/:action' ],
   post : [ '/projects' ]
 };
 
