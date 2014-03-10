@@ -27,7 +27,7 @@
           templateUrl : 'views/beast/partials/account.html',
           controller  : 'AccountController'
         } )
-        .when( '/projects/:id/dashboard', {
+        .when( '/projects/:id/:action', {
           templateUrl : 'views/beast/partials/project.html',
           controller  : 'ProjectController'
         } )
@@ -114,7 +114,8 @@
   .controller( 'ProjectController', function( $scope, $http, $routeParams ) {
     console.log( 'ProjectController() hello yay!!', $routeParams.id );
 
-    $scope.projectId = $routeParams.id;
+    $scope.id = $routeParams.id;
+    $scope.action = $routeParams.action;
 
   } );
 
