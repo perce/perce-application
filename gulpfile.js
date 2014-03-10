@@ -25,8 +25,8 @@ gulp.task( 'bust', function() {
 gulp.task( 'indexScripts', function() {
   gulp.src(
     [
-      './assets/js/vendor/angular.js',
-      './assets/js/vendor/angular-route.js',
+      './assets/js/vendor/angular/angular.js',
+      './assets/js/vendor/angular-route/angular-route.js',
       './assets/js/index/app.js',
       './assets/js/index/controller/login.js',
       './assets/js/index/controller/createUser.js'
@@ -39,9 +39,9 @@ gulp.task( 'indexScripts', function() {
 gulp.task( 'privateScripts', function() {
   gulp.src(
     [
-      './assets/js/vendor/angular.js',
-      './assets/js/vendor/angular-route.js',
-      './assets/js/vendor/angular-animate.js',
+      './assets/js/vendor/angular/angular.min.js',
+      './assets/js/vendor/angular-route/angular-route.min.js',
+      './assets/js/vendor/angular-animate/angular-animate.min.js',
       './assets/js/dashboard/app.js'
     ]
   ).pipe( concat( 'beast.js' ) )
