@@ -93,7 +93,7 @@
   .controller( 'ProjectsController', function( $scope, $http ) {
     console.log( 'ProjectsController() hello hello', $scope );
 
-      $http( { method:'GET', url: 'projects' } ).
+      $http( { method:'GET', url: '/projects' } ).
           success( function( data, status ) {
             $scope.projects = data;
             $scope.status = status;
