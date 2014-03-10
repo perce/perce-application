@@ -8,9 +8,14 @@
     text-decoration none
 
   nav
+    display inline-block
+    vertical-align top
+
     float right
 
-    margin 1rem 0 0 0
+    height header-height
+
+    padding 1rem 0 0 0
 
   ul
     margin 0
@@ -46,4 +51,21 @@
   overflow hidden
 
 .header--email
-  padding-top 1.5rem
+  position relative
+
+  margin  0 0 0 1rem
+  padding 1rem 0 0 1.5rem
+
+  &:before
+    position absolute
+    content ''
+
+    top 1.25rem
+    left 0
+
+    height 1rem
+    width 1rem
+
+    border-radius 50%
+    border 2px solid color-blue
+
