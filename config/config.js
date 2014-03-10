@@ -22,7 +22,15 @@ config.routes.account = {
  * @type {Object}
  */
 config.routes.index = {
-  get : [ '/', '/howitworks', '/features', '/contact', '/user', '/login' ],
+  get : [
+    '/',
+    '/howitworks',
+    '/features',
+    '/contact',
+    '/user',
+    '/user/:hash',
+    '/login'
+  ],
 };
 
 

@@ -39,6 +39,10 @@ var perce = perce || {};
           templateUrl : 'views/beauty/partials/user.html',
           controller  : 'CreateUserController'
         } )
+        .when( '/user/:hash', {
+          templateUrl : 'views/beauty/partials/userInvite.html',
+          controller  : 'CreateUserController'
+        } )
         .when( '/login', {
           templateUrl : 'views/beauty/partials/login.html',
           controller  : 'LoginController'

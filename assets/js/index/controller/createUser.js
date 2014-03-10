@@ -1,11 +1,12 @@
 ( function( perce ) {
 
-  perce.indexApp.controller( 'CreateUserController', function( $scope, $http ) {
+  perce.indexApp.controller( 'CreateUserController', function( $scope, $http, $routeParams ) {
     console.log( 'CreateUserController() ' );
 
-    $scope.submit = function( event ) {
-      console.log( 'CreateUserController() ', $scope );
+    $scope.data = {};
+    $scope.data.hash = $routeParams.hash;
 
+    $scope.submit = function( event ) {
       $http.post( '/user', $scope.data )
           .success( function( data ){
             console.log( 'create user success! ', data );
