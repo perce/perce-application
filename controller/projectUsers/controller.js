@@ -12,7 +12,7 @@ Controller.prototype.isSecure = true;
 
 
 /**
- * Get
+ * Post
  */
 Controller.prototype.post = function *( next ) {
   var post = yield parse( this ),
@@ -23,9 +23,13 @@ Controller.prototype.post = function *( next ) {
     this.params.projectId &&
     post.email
   ) {
-    projectDoc = yield project.addUser( this.params.projectId, post.email );
+    projectDoc = yield project.addUser(
+      this.params.projectId,
+      post.email,
+      this.emitter
+    );
 
-    if ( typeof project === 'object' ) {
+    if ( typeof projectDoc === 'object' ) {
       this.status = 201;
     } else {
       this.status = 401;

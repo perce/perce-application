@@ -56,7 +56,7 @@ Controller.prototype.post = function *( next ) {
     userDoc = yield user.authenticate( post.email, post.password );
 
     if ( userDoc ) {
-      yield session.set( this, userDoc._id );
+      yield session.set( this, userDoc._id, userDoc.email );
 
       this.status = 200;
       this.body = {

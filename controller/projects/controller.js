@@ -1,8 +1,9 @@
-var assets  = require( '../../lib/assets/assetsLoader.js' );
 var debug   = require( 'debug' )( 'PROJECTS/CONTROLLER' );
+var assets  = require( '../../lib/assets/assetsLoader.js' );
 var parse   = require( 'co-body' );
 var project = require( '../../lib/project/project' );
 var session = require( '../../lib/session/session' );
+var emitter = require( '../../lib/emitter/emitter' );
 
 
 /**
@@ -18,7 +19,7 @@ Controller.prototype.isSecure = true;
  */
 Controller.prototype.get = function *( next ) {
   if ( this.header[ 'perce-ajax' ] === 'true' ) {
-    var projects = yield project.getProjectsForUser( this.userId );
+    var projects = yield project.getProjectsForUser( this.user.id );
 
     this.status = 200;
     this.body   = projects;
@@ -48,8 +49,7 @@ Controller.prototype._getHTML = function *() {
  */
 Controller.prototype.post = function *( next ) {
   var post = yield parse( this );
-  debug( 'we are here' );
-  var projectDoc = yield project.create( post, this.userId );
+  var projectDoc = yield project.create( post, this.user );
 
   if ( typeof projectDoc === 'object' ) {
     this.status = 201;

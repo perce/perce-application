@@ -6,6 +6,7 @@ var session = require( '../../lib/session/session' );
 var user    = require( '../../lib/user/user' );
 var parse   = require( 'co-body' );
 
+
 /**
  * Constructor
  * User controller
@@ -24,11 +25,11 @@ Controller.prototype.post = function *post() {
   var userDoc = yield user.create( post );
 
   if ( typeof userDoc === 'object' ) {
-    yield session.set( this, userDoc._id );
+    yield session.set( this, userDoc._id, userDoc._body.email );
 
     this.status = 201;
     this.body = {
-      url : '/dashboard'
+      url : '/projects'
     };
   } else {
     // show error message

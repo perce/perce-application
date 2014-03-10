@@ -37,7 +37,8 @@
     "gulp-uglify": "~0.2.1",
     "koa-views": "~1.1.0",
     "underscore": "~1.6.0",
-    "koa-router": "~3.0.2"
+    "koa-router": "~3.0.2",
+    "mandrill-api": "~1.0.39"
   },
   "devDependencies": {
     "debug": "~0.7.4",

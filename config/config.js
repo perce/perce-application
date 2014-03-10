@@ -88,10 +88,18 @@ config.routes.user = {
  */
 config.couchdb = {
   user     : 'perce',
-  password : 'perce'
+  password : 'perce',
+  db       : 'perce'
 };
 
 
+/**
+ * mandrill configuration
+ * @type {Object}
+ */
+config.mandrill = {
+  apiKey : 'rBHsdmQzRI7IxhUvx8cHTg'
+}
 
 
 module.exports = config;
