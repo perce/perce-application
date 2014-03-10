@@ -111,11 +111,22 @@
 
   } )
 
-  .controller( 'ProjectController', function( $scope, $http, $routeParams ) {
+  .controller( 'ProjectController', function( $scope, $http, $routeParams, $location ) {
     console.log( 'ProjectController() hello yay!!', $routeParams.id );
 
     $scope.id = $routeParams.id;
     $scope.action = $routeParams.action;
+
+    $scope.isActiveLink = function( path ) {
+
+    var pathElements = $location.path().split('/');
+    console.log( 'isActiveLink ', path, pathElements, pathElements[pathElements.length-1] );
+    if ( pathElements[pathElements.length-1] == path) {
+      return "active"
+    } else {
+      return ""
+    }
+}
 
   } );
 
