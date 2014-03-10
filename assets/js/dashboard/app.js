@@ -2,7 +2,7 @@
   var perce = perce || {};
 
   perce.dashboardApp = angular.module( 'beastApp', [
-    'ngRoute',
+    'ui.router',
     'ngAnimate'
   ]);
 
@@ -16,28 +16,38 @@
     };
   })
 
-  .config( [ '$routeProvider','$locationProvider', '$httpProvider',
-    function AppConfig( $routeProvider, $locationProvider, $httpProvider ) {
+  .config( [ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider',
+    function AppConfig( $stateProvider, $urlRouterProvider, $locationProvider, $httpProvider ) {
 
-      $routeProvider
-        .when( '/dashboard', {
-          templateUrl : 'views/beast/partials/home.html'
-        } )
-        .when( '/account', {
-          templateUrl : 'views/beast/partials/account.html',
-          controller  : 'AccountController'
-        } )
-        .when( '/projects/:id/:action', {
-          templateUrl : 'views/beast/partials/project.html',
-          controller  : 'ProjectController'
-        } )
-        .when( '/projects', {
-          templateUrl : 'views/beast/partials/projects.html',
-          controller  : 'ProjectsController'
-        } )
-        .otherwise( {
-          redirectTo: '/'
-        } );
+    $urlRouterProvider.otherwise("/");
+      //
+      // Now set up the states
+      $stateProvider
+        .state('dashboard', {
+          url: '/dashboard',
+          templateUrl: 'views/beast/partials/home.html'
+        })
+        .state('account', {
+          url: '/account',
+          templateUrl: 'views/beast/partials/account.html',
+          controller: 'AccountController'
+        })
+        .state('projects', {
+          url: '/projects',
+          templateUrl: 'views/beast/partials/projects.html',
+          controller: 'ProjectsController'
+        })
+        .state('project', {
+          url: '/project/:id',
+          templateUrl: 'views/beast/partials/project.html',
+          controller: 'ProjectController'
+        });
+
+
+        // .when( '/projects/:id/:action', {
+        //   templateUrl : 'views/beast/partials/project.html',
+        //   controller  : 'ProjectController'
+        // } )
 
         $locationProvider.html5Mode( true );
 
@@ -111,11 +121,11 @@
 
   } )
 
-  .controller( 'ProjectController', function( $scope, $http, $routeParams, $location ) {
-    console.log( 'ProjectController() hello yay!!', $routeParams.id );
+  .controller( 'ProjectController', function( $scope, $http, $stateParams, $location ) {
+    console.log( 'ProjectController() hello yay!!', $stateParams );
 
-    $scope.id = $routeParams.id;
-    $scope.action = $routeParams.action;
+    $scope.id = $stateParams.id;
+
 
     $scope.isActiveLink = function( path ) {
     var pathElements = $location.path().split( '/' );

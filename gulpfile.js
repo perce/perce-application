@@ -39,8 +39,8 @@ gulp.task( 'indexScripts', function() {
 gulp.task( 'privateScripts', function() {
   gulp.src(
     [
-      './assets/js/vendor/angular/angular.min.js',
-      './assets/js/vendor/angular-route/angular-route.min.js',
+      './assets/js/vendor/angular/angular.js',
+      './assets/js/vendor/angular-ui-router/release/angular-ui-router.js',
       './assets/js/vendor/angular-animate/angular-animate.min.js',
       './assets/js/dashboard/app.js'
     ]

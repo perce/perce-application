@@ -2,9 +2,11 @@
 <h2>Create a project or check out a particular project detail view</h2>
 <ul class="projects">
   <li class="project" ng-repeat="project in projects">
-    <a href="/projects/{{ project._id }}/general" class="project__name">{{ project.name }}</a>
+    <a ui-sref="project({ id: project._id })" class="project__name">{{ project.name }}</a>
 
-    <a href="/projects/{{ project._id }}/general" class="project__link">go to</a>
+
+
+    <a ui-sref="project({ id: project._id })" class="project__link">go to</a>
     <input type="checkbox" id="project_{{ project._id}}">
     <label class="project__label--showUserForm" for="project_{{ project._id}}">add user</label>
     <label class="project__label--hideUserForm" for="project_{{ project._id}}">cancel</label>
