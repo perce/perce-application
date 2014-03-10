@@ -3,13 +3,17 @@
  */
 'use strict';
 
-var debug    = require( 'debug' )( 'INDEX' );
-var koa      = require( 'koa' );
-var logger   = require( 'koa-logger' );
-var router   = require( 'koa-router' );
-var views    = require( 'koa-views' );
-var statics  = require( 'koa-static' );
-var session  = require( './lib/session/session' );
+var debug       = require( 'debug' )( 'APP' );
+var koa         = require( 'koa' );
+var logger      = require( 'koa-logger' );
+var router      = require( 'koa-router' );
+var views       = require( 'koa-views' );
+var statics     = require( 'koa-static' );
+var session     = require( './lib/session/session' );
+
+// mailer just needs to be set up once,
+// after that it does it's job via pub/sub
+var mailer      = require( './lib/mailer/mailer' );
 
 // controller
 var controller = {};
@@ -33,28 +37,41 @@ app.outputErrors = true;
 
 // middleware
 
-// logger
+/**
+ * logger for convenience
+ */
 app.use( logger() );
 
-// view handling
+/**
+ * View handling
+ */
 views( app, './views', 'html' )
   .map( 'underscore', 'html' );
 
-// asset handling
+/**
+ * Assets handling
+ */
 app.use( statics( __dirname + '/public' ) );
 
-// route middleware
+
+/**
+ * route build up
+ */
 for ( var route in routes ) {
   for ( var method in routes[ route ] ) {
     if ( routes[ route ][ method ] instanceof Array ) {
       routes[ route ][ method ].forEach( function( value ) {
         if ( controller[ route ].isSecure ) {
           app[ method ](
-            value, session.handleSecure, controller[ route ][ method ]
+            value,
+            session.handleSecure,
+            controller[ route ][ method ]
           );
         } else {
           app[ method ](
-            value, session.handle, controller[ route ][ method ]
+            value,
+            session.handle,
+            controller[ route ][ method ]
           );
         }
       }.bind( this ) );
@@ -62,7 +79,9 @@ for ( var route in routes ) {
   }
 }
 
-// listen
+/**
+ * Kick it off!!! :)
+ */
 app.listen( 3000, function() {
   console.log('listening on port 3000');
 } );
