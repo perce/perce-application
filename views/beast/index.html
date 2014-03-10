@@ -5,7 +5,7 @@
     <title>Perce.io - Frontend performance metrics the easy way</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,800|Gentium+Basic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400|Gentium+Basic" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="<%= assets( '/styles/index.css' ) %>">
     <script src="<%= assets( '/js/beast.js' ) %>">
@@ -33,7 +33,10 @@
         </ul>
       </nav>
       <a href="/" class="header--logo">Perce.io</a>
-      <div class="header--email"><%= userEmail %></div>
+      <img class="header--image" src="http://www.gravatar.com/avatar/<%= userHash %>?s=32">
+      <div class="header--email">
+        <%= userEmail %>
+      </div>
     </header>
     <div class="mainView" ui-view></div>
 

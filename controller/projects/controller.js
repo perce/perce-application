@@ -4,7 +4,7 @@ var parse   = require( 'co-body' );
 var project = require( '../../lib/project/project' );
 var session = require( '../../lib/session/session' );
 var emitter = require( '../../lib/emitter/emitter' );
-
+var crypto  = require( 'crypto' );
 
 /**
  * Index Controller
@@ -38,7 +38,10 @@ Controller.prototype._getHTML = function *() {
                       {
                         assets     : assets,
                         isLoggedIn : session.isLoggedIn( this ),
-                        userEmail  : this.user.email
+                        userEmail  : this.user.email,
+                        userHash   : crypto.createHash( 'md5' )
+                                        .update( this.user.email.toLowerCase() )
+                                        .digest( 'hex' )
 
                       }
                     );
