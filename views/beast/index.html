@@ -19,9 +19,9 @@
             <a href="/contact">Contact</a>
           <% if ( isLoggedIn ) { %>
             <li>
-              <a ui-sref="account">Account</a>
+              <a class="header--nav--link" ui-sref="account" ui-sref-active="active">Account</a>
             <li>
-              <a ui-sref="projects">Projects</a>
+              <a class="header--nav--link" ui-sref="projects" ui-sref-active="active">Projects</a>
             <li>
               <a href="/logout" class="button__red" target="_self">Log out</a>
           <% } else { %>

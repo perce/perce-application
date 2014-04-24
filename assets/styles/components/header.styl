@@ -1,11 +1,12 @@
 .header
   position relative
   height header-height
+
+  background color-super-dark-grey
+
   font-size 1rem
 
-  a
-    color color-white
-    text-decoration none
+  padding 0 1rem
 
   nav
     display inline-block
@@ -15,14 +16,20 @@
 
     height header-height
 
-    padding 0.5rem 0 0 0
+    padding 0
 
   ul
     margin 0
 
   li
     display inline-block
-    margin 0 2rem
+    vertical-align top
+
+    height header-height
+
+    margin 0 0.5rem
+
+    line-height header-height
 
     &:last-child
       margin-right 0
@@ -34,13 +41,15 @@
   height header-height
 
 .header--logo
-
-  margin -1rem 0 0 -1rem
-
   height header-height
   width sidebar-width
 
-  padding 1.5rem 0 0 4rem
+  margin 0 0 0 -1rem
+  padding 1.5rem 0 0 5rem
+
+  text-decoration none
+  color color-white
+
 
   background-color darken( color-super-dark-grey, 5 )
   background-image url(../img/logo.svg)
@@ -50,18 +59,53 @@
 
   overflow hidden
 
+  &:visited
+    color color-white
+
 .header--email
   position relative
 
   margin  0
-  padding 0.5rem 0 0 0
+  padding 1.5rem 0 0 0
 
 .header--image
   height 2.5rem
   width 2.5rem
 
-  margin 0 0.5rem 0 1rem
+  margin 1rem 0.5rem 0 1rem
 
   border-radius 50%
   border 2px solid color-blue
+
+.header--nav--link
+  position relative
+  display block
+
+  width 100%
+  height 100%
+
+  padding 0 1.5rem
+
+
+  color color-white
+  text-decoration none
+
+  &.active
+    background darken( color-super-dark-grey, 3 )
+
+    &:before
+      position absolute
+
+      content ''
+
+      width 100%
+      height 0.25rem
+
+      left 0
+      bottom 0
+
+      background color-red
+
+  &:visited
+    color color-white
 

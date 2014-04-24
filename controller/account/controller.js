@@ -1,6 +1,7 @@
 var debug   = require('debug')('DASHBOARD/CONTROLLER');
 var session = require('../../lib/session/session');
 var assets  = require( '../../lib/assets/assetsLoader.js' );
+var crypto  = require( 'crypto' );
 
 /**
  * Index Controller
@@ -20,7 +21,10 @@ Controller.prototype.get = function *index( next ) {
                     {
                       assets     : assets,
                       isLoggedIn : session.isLoggedIn( this ),
-                      userEmail  : this.user.email
+                      userEmail  : this.user.email,
+                      userHash   : crypto.createHash( 'md5' )
+                                      .update( this.user.email.toLowerCase() )
+                                      .digest( 'hex' )
                     }
                   );
 };

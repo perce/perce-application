@@ -39,8 +39,7 @@
         })
         .state('project', {
           url: '/project/:id',
-          templateUrl: 'views/beast/partials/project.html',
-          controller: 'ProjectController'
+          templateUrl: 'views/beast/partials/project.html'
         })
         .state('project.general', {
           url: '/general',
